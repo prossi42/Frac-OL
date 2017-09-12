@@ -12,6 +12,16 @@
 
 #include "../include/fractol.h"
 
+int		key_hook(int keycode, t_first *first)
+{
+	if (keycode == 53)
+	{
+		ft_putstr("\n	End Of Program");
+		exit(-1);
+	}
+	return (0);
+}
+
 void	mlx_pixel_put_to_image(t_sd sd, int x, int y, int color)
 {
 	int			color1;
@@ -20,7 +30,7 @@ void	mlx_pixel_put_to_image(t_sd sd, int x, int y, int color)
 	int			bit_pix;
 	float		img_size;
 
-	img_size = sd.win_x * sd.win_y * sd.bpp / 8;
+	img_size = WINSIZE_X * WINSIZE_Y * sd.bpp / 8;
 	if (x < 0 || y < 0 || y * sd.size_line + x * sd.bpp / 8 > \
 		img_size
 		|| x >= sd.size_line / (sd.bpp / 8) || y >= img_size / \
@@ -49,7 +59,7 @@ int		ft_mlx(t_first *first)
 	ft_mandel(first);
 	mlx_put_image_to_window(first->sd.init, first->sd.wdow, \
 		first->sd.img, 0, 0);
-	// mlx_hook(first->sd.wdow, 2, (1L << 0), key_hook, first);
+	mlx_hook(first->sd.wdow, 2, (1L << 0), key_hook, first);
 	mlx_loop(first->sd.init);
 	return (0);
 }

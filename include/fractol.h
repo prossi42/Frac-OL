@@ -16,11 +16,16 @@
 # include <mlx.h>
 # include "../libft/include/off_libft/libft.h"
 # include "../libft/include/pimp_libft/my_libft.h"
-# define WINSIZE_X 600
-# define WINSIZE_Y 600
+# define WINSIZE_X 800
+# define WINSIZE_Y 800
 /*
 ** Structure de la Fractale de Mandelbrot
 */
+
+typedef struct		s_col
+{
+	int				*tab;
+}					t_col;
 
 typedef struct		s_sd
 {
@@ -36,14 +41,13 @@ typedef struct		s_sd
 	double			ci;
 	double			zr;
 	double			zi;
-	double			tmp;
 	int				img_x;
 	int				img_y;
 	int				itmax;
 	int				endian;
-	int				zoom;
-	int				win_x;
-	int				win_y;
+	double			zoom;
+	// int				zoomx;
+	// int				zoomy;
 	int				bpp;
 	int				size_line;
 }					t_sd;
@@ -51,6 +55,7 @@ typedef struct		s_sd
 typedef struct		s_first
 {
 	t_sd			sd;
+	t_col			col;
 }					t_first;
 
 void				ft_init_struct(t_first *first, int option);

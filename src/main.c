@@ -33,6 +33,7 @@ int		main(int argc, char **argv)
 	}
 	if (ft_detect_map(&first, argv) == -1)
 		return (-1);
+	first->col.tab = ft_tabint(18, 14);
 	ft_mlx(&first);
 	return (0);
 }

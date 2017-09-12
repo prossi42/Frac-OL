@@ -16,7 +16,7 @@ NAME = fractol
 
 SRC_PATH = src
 
-SRC_NAME = main.c ft_init_struct.c ft_affich.c ft_mandel.c ft_mlx.c
+SRC_NAME = main.c ft_init_struct.c ft_affich.c ft_mandel.c ft_mlx.c ft_tabcolor.c
 
 # OBJ_PATH = $(SRC_PATH)
 
