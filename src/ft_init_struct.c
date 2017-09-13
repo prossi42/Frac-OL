@@ -22,10 +22,12 @@ void	ft_init_struct(t_first *first, int option)
 		first->sd.ymax = 1.2;
 		first->sd.itmax = 50;
 		first->sd.zoom = 200;
+		first->col.cx = 0;
+		first->col.cy = 0;
 	}
-	if (option == 1)
-	{
-		first->sd.img_x = (first->sd.xmax - first->sd.xmin) * first->sd.zoom;
-		first->sd.img_y = (first->sd.ymax - first->sd.ymin) * first->sd.zoom;
-	}
+	// if (option == 1)
+	// {
+	// 	first->sd.img_x = (first->sd.xmax - first->sd.xmin) * first->sd.zoom;
+	// 	first->sd.img_y = (first->sd.ymax - first->sd.ymin) * first->sd.zoom;
+	// }
 }

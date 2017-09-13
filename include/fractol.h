@@ -24,7 +24,9 @@
 
 typedef struct		s_col
 {
-	int				*tab;
+	int				**tab;
+	int				cx;
+	int				cy;
 }					t_col;
 
 typedef struct		s_sd
@@ -56,13 +58,18 @@ typedef struct		s_first
 {
 	t_sd			sd;
 	t_col			col;
+	int				m;
 }					t_first;
 
 void				ft_init_struct(t_first *first, int option);
 int					ft_mlx(t_first *first);
 void 				ft_mandel(t_first *first);
+void				ft_tricorn(t_first *first);
 void				mlx_pixel_put_to_image(t_sd sd, int x, int y, \
 	int color);
 void				ft_affich_first(t_first *first, int option);
+void				ft_tabcolor(t_first *first);
+void				ft_tabcolor_sd(t_first *first);
+void				ft_tabcolor_td(t_first *first);
 
 #endif

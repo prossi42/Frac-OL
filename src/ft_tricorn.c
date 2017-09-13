@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mandel.c                                        :+:      :+:    :+:   */
+/*   ft_tricorn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/08 13:42:09 by prossi            #+#    #+#             */
-/*   Updated: 2017/09/08 13:42:20 by prossi           ###   ########.fr       */
+/*   Created: 2017/09/13 11:08:15 by prossi            #+#    #+#             */
+/*   Updated: 2017/09/13 11:08:17 by prossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
 
-void	ft_mandel(t_first *first)
+void 	ft_color_tricorn(t_first *first, int x, int y)
+{
+	mlx_pixel_put_to_image(first->sd, x, y, first->col.tab[first->col.cy][first->col.cx]);
+	if (first->col.cy == 11)
+		first->col.cy = 0;
+	if (first->col.cx == 17)
+	{
+		first->col.cy++;
+		first->col.cx = 0;
+	}
+	first->col.cx++;
+}
+
+void	ft_tricorn(t_first *first)
 {
 	int			x;
 	int			y;
@@ -34,7 +47,7 @@ void	ft_mandel(t_first *first)
 			{
 				tmp = first->sd.zr;
 				first->sd.zr = first->sd.zr * first->sd.zr - first->sd.zi * first->sd.zi + first->sd.cr;
-				first->sd.zi = 2 * first->sd.zi * tmp + first->sd.ci;
+				first->sd.zi = -2 * first->sd.zi * tmp + first->sd.ci;
 				i++;
 			}
 			if (i == first->sd.itmax)
@@ -42,7 +55,7 @@ void	ft_mandel(t_first *first)
 				mlx_pixel_put_to_image(first->sd, x, y, 0xFFFFFF);
 			}
 			else
-				mlx_pixel_put_to_image(first->sd, x, y, 0x012345);
+				ft_color_tricorn(first, x, y);
 			y++;
 		}
 		x++;

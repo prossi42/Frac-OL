@@ -56,7 +56,10 @@ int		ft_mlx(t_first *first)
 		return (-1);
 	first->sd.map = mlx_get_data_addr(first->sd.img, &first->sd.bpp, \
 		&first->sd.size_line, &first->sd.endian);
-	ft_mandel(first);
+	if (first->m == 1)
+		ft_mandel(first);
+	if (first->m == 2)
+		ft_tricorn(first);
 	mlx_put_image_to_window(first->sd.init, first->sd.wdow, \
 		first->sd.img, 0, 0);
 	mlx_hook(first->sd.wdow, 2, (1L << 0), key_hook, first);

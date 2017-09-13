@@ -17,6 +17,13 @@ int		ft_detect_map(t_first *first, char **map)
 	if (ft_strcmp(map[1], "mandelbrot") == 0)
 	{
 		ft_init_struct(first, 0);
+		first->m = 1;
+		return (0);
+	}
+	if (ft_strcmp(map[1], "tricorn") == 0)
+	{
+		ft_init_struct(first, 0);
+		first->m = 2;
 		return (0);
 	}
 	return (-1);
@@ -33,7 +40,7 @@ int		main(int argc, char **argv)
 	}
 	if (ft_detect_map(&first, argv) == -1)
 		return (-1);
-	first->col.tab = ft_tabint(18, 14);
+	first.col.tab = ft_tabint(18, 12);
 	ft_mlx(&first);
 	return (0);
 }
