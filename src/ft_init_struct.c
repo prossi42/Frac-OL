@@ -24,6 +24,7 @@ void	ft_init_struct(t_first *first, int option)
 		first->sd.zoom = 200;
 		first->col.cx = 0;
 		first->col.cy = 0;
+		first->col.swoosh = 0;
 	}
 	// if (option == 1)
 	// {

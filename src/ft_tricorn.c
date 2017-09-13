@@ -14,15 +14,20 @@
 
 void 	ft_color_tricorn(t_first *first, int x, int y)
 {
+	first->col.swoosh += 0.30;
 	mlx_pixel_put_to_image(first->sd, x, y, first->col.tab[first->col.cy][first->col.cx]);
-	if (first->col.cy == 11)
-		first->col.cy = 0;
-	if (first->col.cx == 17)
+	if (first->col.swoosh < 1)
 	{
-		first->col.cy++;
-		first->col.cx = 0;
+		if (first->col.cy == 3)
+			first->col.cy = 0;
+		if (first->col.cx == 7)
+		{
+			first->col.cy++;
+			first->col.cx = 5;
+		}
+		first->col.cx++;
+		first->col.swoosh = 0;
 	}
-	first->col.cx++;
 }
 
 void	ft_tricorn(t_first *first)
@@ -52,10 +57,10 @@ void	ft_tricorn(t_first *first)
 			}
 			if (i == first->sd.itmax)
 			{
-				mlx_pixel_put_to_image(first->sd, x, y, 0xFFFFFF);
+				ft_color_tricorn(first, x, y);
 			}
 			else
-				ft_color_tricorn(first, x, y);
+				mlx_pixel_put_to_image(first->sd, x, y, 0x000000);
 			y++;
 		}
 		x++;

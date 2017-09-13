@@ -19,6 +19,25 @@ int		key_hook(int keycode, t_first *first)
 		ft_putstr("\n	End Of Program");
 		exit(-1);
 	}
+	if (keycode == 123)
+		first->sd.xmin += 0.10;
+	if (keycode == 124)
+		first->sd.xmin -= 0.10;
+	if (keycode == 125)
+		first->sd.ymin += 0.10;
+	if (keycode == 126)
+		first->sd.ymin -= 0.10;
+	mlx_destroy_image(first->sd.init, first->sd.img);
+	ft_init_struct(first, 3);
+	first->sd.img = mlx_new_image(first->sd.init, WINSIZE_X, WINSIZE_Y);
+	first->sd.map = mlx_get_data_addr(first->sd.img, &first->sd.bpp, \
+		&first->sd.size_line, &first->sd.endian);
+	if (first->m == 1)
+		ft_mandel(first);
+	if (first->m == 2)
+		ft_tricorn(first);
+	mlx_put_image_to_window(first->sd.init, first->sd.wdow, \
+		first->sd.img, 0, 0);
 	return (0);
 }
 

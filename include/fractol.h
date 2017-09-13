@@ -27,6 +27,7 @@ typedef struct		s_col
 	int				**tab;
 	int				cx;
 	int				cy;
+	double			swoosh;
 }					t_col;
 
 typedef struct		s_sd
