@@ -12,11 +12,30 @@
 
 #include "../include/fractol.h"
 
+void 	ft_color_ext(t_first *first, int x, int y)
+{
+	first->col.nike += 1;
+	// mlx_pixel_put_to_image(first->sd, x, y, first->col.tab[first->col.cyy][first->col.cxx]);
+	mlx_pixel_put_to_image(first->sd, x, y, 0xFFFFFF);
+	if (first->col.nike > 1000)
+	{
+		if (first->col.cyy == 0)
+			first->col.cyy = 11;
+		if (first->col.cxx == 0)
+		{
+			first->col.cyy--;
+			first->col.cxx = 17;
+		}
+		first->col.cxx--;
+		first->col.nike = 0;
+	}
+}
+
 void 	ft_color_tricorn(t_first *first, int x, int y)
 {
 	first->col.swoosh += 0.10;
 	mlx_pixel_put_to_image(first->sd, x, y, first->col.tab[first->col.cy][first->col.cx]);
-	if (first->col.swoosh > 1)
+	if (first->col.swoosh > 10)
 	{
 		if (first->col.cy == 11)
 			first->col.cy = 0;
@@ -48,11 +67,11 @@ void	ft_tricorn(t_first *first)
 			first->sd.zr = 0;
 			first->sd.zi = 0;
 			i = 0;
-			while (first->sd.zr * first->sd.zr + first->sd.zi * first->sd.zi < 4 && i < first->sd.itmax )
+			while (first->sd.zr * first->sd.zr + first->sd.zi * first->sd.zi < first->sd.mere && i < first->sd.itmax )
 			{
 				tmp = first->sd.zr;
 				first->sd.zr = first->sd.zr * first->sd.zr - first->sd.zi * first->sd.zi + first->sd.cr;
-				first->sd.zi = -2 * first->sd.zi * tmp + first->sd.ci;
+				first->sd.zi = first->sd.jf * first->sd.zi * tmp + first->sd.ci;
 				i++;
 			}
 			if (i == first->sd.itmax)
@@ -60,7 +79,7 @@ void	ft_tricorn(t_first *first)
 				ft_color_tricorn(first, x, y);
 			}
 			else
-				mlx_pixel_put_to_image(first->sd, x, y, 0x000000);
+				ft_color_ext(first, x, y);
 			y++;
 		}
 		x++;

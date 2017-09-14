@@ -25,7 +25,7 @@ LDFLAGS = -Llibft
 LDLIBS = libft/my_libft.a
 
 CC = gcc
-CFLAGS = -lmlx -framework OpenGL -framework Appkit
+CFLAGS = -lmlx -framework OpenGL -framework Appkit 
 
 # OBJ_NAME = $(SRC_NAME:.c=.o)
 

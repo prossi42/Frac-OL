@@ -25,7 +25,24 @@ void	ft_init_struct(t_first *first, int option)
 		first->col.cx = 0;
 		first->col.cy = 0;
 		first->col.swoosh = 0;
-		first->col.nimp = 4;
+	}
+	if (option == 1)
+	{
+		first->sd.xmin = -2.1;
+		first->sd.xmax = 0.6;
+ 		first->sd.ymin = -1.2;
+		first->sd.ymax = 1.2;
+		first->sd.itmax = 50;
+		first->sd.zoom = 200;
+		first->col.cx = 0;
+		first->col.cxx = 17;
+		first->col.cy = 0;
+		first->col.cyy = 11;
+		first->col.swoosh = 0;
+		first->col.nike = 0;
+		first->sd.bpp = 0;
+		first->sd.mere = 4;
+		first->sd.jf = -2;
 	}
 	// if (option == 1)
 	// {

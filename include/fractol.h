@@ -26,9 +26,11 @@ typedef struct		s_col
 {
 	int				**tab;
 	int				cx;
+	int				cxx;
 	int				cy;
+	int				cyy;
 	double			swoosh;
-	double			nimp;
+	double			nike;
 }					t_col;
 
 typedef struct		s_sd
@@ -52,6 +54,8 @@ typedef struct		s_sd
 	double			zoom;
 	int				bpp;
 	int				size_line;
+	double			mere;
+	double			jf;
 }					t_sd;
 
 typedef struct		s_first

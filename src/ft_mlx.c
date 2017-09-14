@@ -33,10 +33,18 @@ int		key_hook(int keycode, t_first *first)
 		first->sd.zoom += 10;
 	if (keycode == 78)
 		first->sd.zoom -= 10;
-	// if (keycode == 0)
-	// 	first->col.nimp -= 0.02;
-	// if (keycode == 11)
-	// 	first->col.nimp += 0.02;
+	if (keycode == 67)
+		if (first->sd.mere < 4)
+			first->sd.mere += 0.05;
+	if (keycode == 75)
+		if (first->sd.mere > 0)
+			first->sd.mere -= 0.05;
+	if (keycode == 0)
+		if (first->sd.jf < 2)
+			first->sd.jf += 0.05;
+	if (keycode == 11)
+		if (first->sd.jf > -2)
+			first->sd.jf -= 0.05;
 	mlx_destroy_image(first->sd.init, first->sd.img);
 	ft_init_struct(first, 3);
 	first->sd.img = mlx_new_image(first->sd.init, WINSIZE_X, WINSIZE_Y);
@@ -80,6 +88,7 @@ int		ft_mlx(t_first *first)
 	first->sd.wdow = mlx_new_window(first->sd.init, WINSIZE_X, WINSIZE_Y, \
 		"WTF !?!");
 	first->sd.img = mlx_new_image(first->sd.init, WINSIZE_X, WINSIZE_Y);
+	ft_putnbr(WINSIZE_X * WINSIZE_Y * first->sd.bpp);
 	if (!(first->sd.map = (char *)malloc(sizeof(char) * (WINSIZE_X * \
 		WINSIZE_Y * first->sd.bpp))))
 		return (-1);

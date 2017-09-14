@@ -22,7 +22,7 @@ int		ft_detect_map(t_first *first, char **map)
 	}
 	if (ft_strcmp(map[1], "tricorn") == 0)
 	{
-		ft_init_struct(first, 0);
+		ft_init_struct(first, 1);
 		first->m = 2;
 		return (0);
 	}
