@@ -14,16 +14,16 @@
 
 void 	ft_color_tricorn(t_first *first, int x, int y)
 {
-	first->col.swoosh += 0.30;
+	first->col.swoosh += 0.10;
 	mlx_pixel_put_to_image(first->sd, x, y, first->col.tab[first->col.cy][first->col.cx]);
-	if (first->col.swoosh < 1)
+	if (first->col.swoosh > 1)
 	{
-		if (first->col.cy == 3)
+		if (first->col.cy == 11)
 			first->col.cy = 0;
-		if (first->col.cx == 7)
+		if (first->col.cx == 10)
 		{
 			first->col.cy++;
-			first->col.cx = 5;
+			first->col.cx = 0;
 		}
 		first->col.cx++;
 		first->col.swoosh = 0;

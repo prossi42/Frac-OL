@@ -20,13 +20,23 @@ int		key_hook(int keycode, t_first *first)
 		exit(-1);
 	}
 	if (keycode == 123)
+	{
 		first->sd.xmin += 0.10;
+	}
 	if (keycode == 124)
 		first->sd.xmin -= 0.10;
 	if (keycode == 125)
-		first->sd.ymin += 0.10;
-	if (keycode == 126)
 		first->sd.ymin -= 0.10;
+	if (keycode == 126)
+		first->sd.ymin += 0.10;
+	if (keycode == 69)
+		first->sd.zoom += 10;
+	if (keycode == 78)
+		first->sd.zoom -= 10;
+	// if (keycode == 0)
+	// 	first->col.nimp -= 0.02;
+	// if (keycode == 11)
+	// 	first->col.nimp += 0.02;
 	mlx_destroy_image(first->sd.init, first->sd.img);
 	ft_init_struct(first, 3);
 	first->sd.img = mlx_new_image(first->sd.init, WINSIZE_X, WINSIZE_Y);

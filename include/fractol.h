@@ -28,6 +28,7 @@ typedef struct		s_col
 	int				cx;
 	int				cy;
 	double			swoosh;
+	double			nimp;
 }					t_col;
 
 typedef struct		s_sd
@@ -49,8 +50,6 @@ typedef struct		s_sd
 	int				itmax;
 	int				endian;
 	double			zoom;
-	// int				zoomx;
-	// int				zoomy;
 	int				bpp;
 	int				size_line;
 }					t_sd;

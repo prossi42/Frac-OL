@@ -25,6 +25,7 @@ void	ft_init_struct(t_first *first, int option)
 		first->col.cx = 0;
 		first->col.cy = 0;
 		first->col.swoosh = 0;
+		first->col.nimp = 4;
 	}
 	// if (option == 1)
 	// {
