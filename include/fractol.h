@@ -56,24 +56,28 @@ typedef struct		s_sd
 	int				size_line;
 	double			mere;
 	double			jf;
+	int				slide;
 }					t_sd;
 
-typedef struct		s_first
+typedef struct		s_fs
 {
 	t_sd			sd;
 	t_col			col;
 	int				m;
-}					t_first;
+	int				psy;
+}					t_fs;
 
-void				ft_init_struct(t_first *first, int option);
-int					ft_mlx(t_first *first);
-void 				ft_mandel(t_first *first);
-void				ft_tricorn(t_first *first);
+void				ft_init_struct(t_fs *fs, int option);
+int					ft_mlx(t_fs *fs);
+void 				ft_mandel(t_fs *fs);
+void				ft_tricorn(t_fs *fs);
 void				mlx_pixel_put_to_image(t_sd sd, int x, int y, \
 	int color);
-void				ft_affich_first(t_first *first, int option);
-void				ft_tabcolor(t_first *first);
-void				ft_tabcolor_sd(t_first *first);
-void				ft_tabcolor_td(t_first *first);
-
+void				ft_affich_fs(t_fs *fs, int option);
+void				ft_tabcolor(t_fs *fs);
+void				ft_tabcolor_sd(t_fs *fs);
+void				ft_tabcolor_td(t_fs *fs);
+void				ft_color_tricorn(t_fs *fs, int x, int y);
+void				ft_color_ext(t_fs *fs, int x, int y, int i);
+void				ft_julia(t_fs *fs);
 #endif

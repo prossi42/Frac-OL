@@ -12,44 +12,7 @@
 
 #include "../include/fractol.h"
 
-void 	ft_color_ext(t_first *first, int x, int y)
-{
-	first->col.nike += 1;
-	// mlx_pixel_put_to_image(first->sd, x, y, first->col.tab[first->col.cyy][first->col.cxx]);
-	mlx_pixel_put_to_image(first->sd, x, y, 0xFFFFFF);
-	if (first->col.nike > 1000)
-	{
-		if (first->col.cyy == 0)
-			first->col.cyy = 11;
-		if (first->col.cxx == 0)
-		{
-			first->col.cyy--;
-			first->col.cxx = 17;
-		}
-		first->col.cxx--;
-		first->col.nike = 0;
-	}
-}
-
-void 	ft_color_tricorn(t_first *first, int x, int y)
-{
-	first->col.swoosh += 0.10;
-	mlx_pixel_put_to_image(first->sd, x, y, first->col.tab[first->col.cy][first->col.cx]);
-	if (first->col.swoosh > 10)
-	{
-		if (first->col.cy == 11)
-			first->col.cy = 0;
-		if (first->col.cx == 10)
-		{
-			first->col.cy++;
-			first->col.cx = 0;
-		}
-		first->col.cx++;
-		first->col.swoosh = 0;
-	}
-}
-
-void	ft_tricorn(t_first *first)
+void	ft_tricorn(t_fs *fs)
 {
 	int			x;
 	int			y;
@@ -62,24 +25,24 @@ void	ft_tricorn(t_first *first)
 		y = 0;
 		while (y < WINSIZE_Y)
 		{
-			first->sd.cr = ((x / first->sd.zoom) + first->sd.xmin);
-			first->sd.ci = ((y / first->sd.zoom) + first->sd.ymin);
-			first->sd.zr = 0;
-			first->sd.zi = 0;
+			fs->sd.cr = ((x / fs->sd.zoom) + fs->sd.xmin);
+			fs->sd.ci = ((y / fs->sd.zoom) + fs->sd.ymin);
+			fs->sd.zr = 0;
+			fs->sd.zi = 0;
 			i = 0;
-			while (first->sd.zr * first->sd.zr + first->sd.zi * first->sd.zi < first->sd.mere && i < first->sd.itmax )
+			while (fs->sd.zr * fs->sd.zr + fs->sd.zi * fs->sd.zi < fs->sd.mere && i < fs->sd.itmax)
 			{
-				tmp = first->sd.zr;
-				first->sd.zr = first->sd.zr * first->sd.zr - first->sd.zi * first->sd.zi + first->sd.cr;
-				first->sd.zi = first->sd.jf * first->sd.zi * tmp + first->sd.ci;
+				tmp = fs->sd.zr;
+				fs->sd.zr = fs->sd.zr * fs->sd.zr - fs->sd.zi * fs->sd.zi + fs->sd.cr;
+				fs->sd.zi = fs->sd.jf * fs->sd.zi * tmp + fs->sd.ci;
 				i++;
 			}
-			if (i == first->sd.itmax)
+			if (i == fs->sd.itmax)
 			{
-				ft_color_tricorn(first, x, y);
+				ft_color_tricorn(fs, x, y);
 			}
 			else
-				ft_color_ext(first, x, y);
+				ft_color_ext(fs, x, y, i);
 			y++;
 		}
 		x++;

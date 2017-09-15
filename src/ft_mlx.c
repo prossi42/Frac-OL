@@ -12,7 +12,7 @@
 
 #include "../include/fractol.h"
 
-int		key_hook(int keycode, t_first *first)
+int		key_hook(int keycode, t_fs *fs)
 {
 	if (keycode == 53)
 	{
@@ -20,42 +20,49 @@ int		key_hook(int keycode, t_first *first)
 		exit(-1);
 	}
 	if (keycode == 123)
-	{
-		first->sd.xmin += 0.10;
-	}
+		fs->sd.xmin += 0.10;
 	if (keycode == 124)
-		first->sd.xmin -= 0.10;
+		fs->sd.xmin -= 0.10;
 	if (keycode == 125)
-		first->sd.ymin -= 0.10;
+		fs->sd.ymin -= 0.10;
 	if (keycode == 126)
-		first->sd.ymin += 0.10;
+		fs->sd.ymin += 0.10;
 	if (keycode == 69)
-		first->sd.zoom += 10;
+		fs->sd.zoom += 10;
 	if (keycode == 78)
-		first->sd.zoom -= 10;
+		fs->sd.zoom -= 10;
 	if (keycode == 67)
-		if (first->sd.mere < 4)
-			first->sd.mere += 0.05;
+		if (fs->sd.mere < 4)
+			fs->sd.mere += 0.05;
 	if (keycode == 75)
-		if (first->sd.mere > 0)
-			first->sd.mere -= 0.05;
+		if (fs->sd.mere > 0)
+			fs->sd.mere -= 0.05;
 	if (keycode == 0)
-		if (first->sd.jf < 2)
-			first->sd.jf += 0.05;
+		if (fs->sd.jf < 2)
+			fs->sd.jf += 0.05;
 	if (keycode == 11)
-		if (first->sd.jf > -2)
-			first->sd.jf -= 0.05;
-	mlx_destroy_image(first->sd.init, first->sd.img);
-	ft_init_struct(first, 3);
-	first->sd.img = mlx_new_image(first->sd.init, WINSIZE_X, WINSIZE_Y);
-	first->sd.map = mlx_get_data_addr(first->sd.img, &first->sd.bpp, \
-		&first->sd.size_line, &first->sd.endian);
-	if (first->m == 1)
-		ft_mandel(first);
-	if (first->m == 2)
-		ft_tricorn(first);
-	mlx_put_image_to_window(first->sd.init, first->sd.wdow, \
-		first->sd.img, 0, 0);
+		if (fs->sd.jf > -2)
+			fs->sd.jf -= 0.05;
+	if (keycode == 35)
+	{
+		if (fs->psy == 0)
+			fs->psy = 1;
+		else
+			fs->psy = 0;
+	}
+	mlx_destroy_image(fs->sd.init, fs->sd.img);
+	ft_init_struct(fs, 3);
+	fs->sd.img = mlx_new_image(fs->sd.init, WINSIZE_X, WINSIZE_Y);
+	fs->sd.map = mlx_get_data_addr(fs->sd.img, &fs->sd.bpp, \
+		&fs->sd.size_line, &fs->sd.endian);
+	if (fs->m == 1)
+		ft_mandel(fs);
+	if (fs->m == 2)
+		ft_tricorn(fs);
+	if (fs->m == 3)
+		ft_julia(fs);
+	mlx_put_image_to_window(fs->sd.init, fs->sd.wdow, \
+		fs->sd.img, 0, 0);
 	return (0);
 }
 
@@ -82,25 +89,23 @@ void	mlx_pixel_put_to_image(t_sd sd, int x, int y, int color)
 	sd.map[y * sd.size_line + x * bit_pix + 2] = color3;
 }
 
-int		ft_mlx(t_first *first)
+int		ft_mlx(t_fs *fs)
 {
-	first->sd.init = mlx_init();
-	first->sd.wdow = mlx_new_window(first->sd.init, WINSIZE_X, WINSIZE_Y, \
+	fs->sd.init = mlx_init();
+	fs->sd.wdow = mlx_new_window(fs->sd.init, WINSIZE_X, WINSIZE_Y, \
 		"WTF !?!");
-	first->sd.img = mlx_new_image(first->sd.init, WINSIZE_X, WINSIZE_Y);
-	ft_putnbr(WINSIZE_X * WINSIZE_Y * first->sd.bpp);
-	if (!(first->sd.map = (char *)malloc(sizeof(char) * (WINSIZE_X * \
-		WINSIZE_Y * first->sd.bpp))))
-		return (-1);
-	first->sd.map = mlx_get_data_addr(first->sd.img, &first->sd.bpp, \
-		&first->sd.size_line, &first->sd.endian);
-	if (first->m == 1)
-		ft_mandel(first);
-	if (first->m == 2)
-		ft_tricorn(first);
-	mlx_put_image_to_window(first->sd.init, first->sd.wdow, \
-		first->sd.img, 0, 0);
-	mlx_hook(first->sd.wdow, 2, (1L << 0), key_hook, first);
-	mlx_loop(first->sd.init);
+	fs->sd.img = mlx_new_image(fs->sd.init, WINSIZE_X, WINSIZE_Y);
+	fs->sd.map = mlx_get_data_addr(fs->sd.img, &fs->sd.bpp, \
+		&fs->sd.size_line, &fs->sd.endian);
+	if (fs->m == 1)
+		ft_mandel(fs);
+	if (fs->m == 2)
+		ft_tricorn(fs);
+	if (fs->m == 3)
+		ft_julia(fs);
+	mlx_put_image_to_window(fs->sd.init, fs->sd.wdow, \
+		fs->sd.img, 0, 0);
+	mlx_hook(fs->sd.wdow, 2, (1L << 0), key_hook, fs);
+	mlx_loop(fs->sd.init);
 	return (0);
 }

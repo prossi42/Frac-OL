@@ -12,41 +12,63 @@
 
 #include "../include/fractol.h"
 
-void	ft_init_struct(t_first *first, int option)
+void	ft_init_struct(t_fs *fs, int option)
 {
 	if (option == 0)
 	{
-		first->sd.xmin = -2.1;
-		first->sd.xmax = 0.6;
- 		first->sd.ymin = -1.2;
-		first->sd.ymax = 1.2;
-		first->sd.itmax = 50;
-		first->sd.zoom = 200;
-		first->col.cx = 0;
-		first->col.cy = 0;
-		first->col.swoosh = 0;
+		fs->sd.xmin = -2.1;
+		fs->sd.xmax = 0.6;
+ 		fs->sd.ymin = -1.2;
+		fs->sd.ymax = 1.2;
+		fs->sd.itmax = 50;
+		fs->sd.zoom = 200;
+		fs->col.cx = 0;
+		fs->col.cy = 0;
+		fs->col.swoosh = 0;
 	}
 	if (option == 1)
 	{
-		first->sd.xmin = -2.1;
-		first->sd.xmax = 0.6;
- 		first->sd.ymin = -1.2;
-		first->sd.ymax = 1.2;
-		first->sd.itmax = 50;
-		first->sd.zoom = 200;
-		first->col.cx = 0;
-		first->col.cxx = 17;
-		first->col.cy = 0;
-		first->col.cyy = 11;
-		first->col.swoosh = 0;
-		first->col.nike = 0;
-		first->sd.bpp = 0;
-		first->sd.mere = 4;
-		first->sd.jf = -2;
+		fs->sd.xmin = -2.1;
+		fs->sd.xmax = 0.6;
+ 		fs->sd.ymin = -1.2;
+		fs->sd.ymax = 1.2;
+		fs->sd.itmax = 50;
+		fs->sd.zoom = 200;
+		fs->col.cx = 0;
+		fs->col.cxx = 17;
+		fs->col.cy = 0;
+		fs->col.cyy = 11;
+		fs->col.swoosh = 0;
+		fs->col.nike = 0;
+		fs->sd.bpp = 4;
+		fs->sd.mere = 4;
+		fs->sd.jf = -2;
+		fs->sd.slide = 0;
+		fs->psy = 0;
+	}
+	if (option == 2)
+	{
+		fs->sd.xmin = -1;
+		fs->sd.xmax = 1;
+		fs->sd.ymin = -1.2;
+		fs->sd.ymax = 1.2;
+		fs->sd.itmax = 150;
+		fs->sd.zoom = 100;
+		fs->col.cx = 0;
+		fs->col.cxx = 17;
+		fs->col.cy = 0;
+		fs->col.cyy = 11;
+		fs->col.swoosh = 0;
+		fs->col.nike = 0;
+		fs->sd.bpp = 4;
+		fs->sd.mere = 4;
+		fs->sd.jf = 2;
+		fs->sd.slide = 0;
+		fs->psy = 0;
 	}
 	// if (option == 1)
 	// {
-	// 	first->sd.img_x = (first->sd.xmax - first->sd.xmin) * first->sd.zoom;
-	// 	first->sd.img_y = (first->sd.ymax - first->sd.ymin) * first->sd.zoom;
+	// 	fs->sd.img_x = (fs->sd.xmax - fs->sd.xmin) * fs->sd.zoom;
+	// 	fs->sd.img_y = (fs->sd.ymax - fs->sd.ymin) * fs->sd.zoom;
 	// }
 }

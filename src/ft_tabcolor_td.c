@@ -12,47 +12,47 @@
 
 #include "../include/fractol.h"
 
-void	ft_tabcolor_tds(t_first *first)
+void	ft_tabcolor_tds(t_fs *fs)
 {
-	first->col.tab[11][0] = 0x000000;
-	first->col.tab[11][1] = 0x003300;
-	first->col.tab[11][2] = 0x006600;
-	first->col.tab[11][3] = 0x009900;
-	first->col.tab[11][4] = 0x00CC00;
-	first->col.tab[11][5] = 0x00FF00;
-	first->col.tab[11][6] = 0x99FF00;
-	first->col.tab[11][7] = 0x99CC00;
-	first->col.tab[11][8] = 0x999900;
-	first->col.tab[11][9] = 0x996600;
-	first->col.tab[11][10] = 0x993300;
-	first->col.tab[11][11]= 0x990000;
-	first->col.tab[11][12] = 0xCC0000;
-	first->col.tab[11][13] = 0xCC3300;
-	first->col.tab[11][14] = 0xCC6600;
-	first->col.tab[11][15] = 0xCC9900;
-	first->col.tab[11][16] = 0xCCCC00;
-	first->col.tab[11][17] = 0xCCFF00;
+	fs->col.tab[11][0] = 0x000000;
+	fs->col.tab[11][1] = 0x003300;
+	fs->col.tab[11][2] = 0x006600;
+	fs->col.tab[11][3] = 0x009900;
+	fs->col.tab[11][4] = 0x00CC00;
+	fs->col.tab[11][5] = 0x00FF00;
+	fs->col.tab[11][6] = 0x99FF00;
+	fs->col.tab[11][7] = 0x99CC00;
+	fs->col.tab[11][8] = 0x999900;
+	fs->col.tab[11][9] = 0x996600;
+	fs->col.tab[11][10] = 0x993300;
+	fs->col.tab[11][11]= 0x990000;
+	fs->col.tab[11][12] = 0xCC0000;
+	fs->col.tab[11][13] = 0xCC3300;
+	fs->col.tab[11][14] = 0xCC6600;
+	fs->col.tab[11][15] = 0xCC9900;
+	fs->col.tab[11][16] = 0xCCCC00;
+	fs->col.tab[11][17] = 0xCCFF00;
 }
 
-void 	ft_tabcolor_td(t_first *first)
+void 	ft_tabcolor_td(t_fs *fs)
 {
-	first->col.tab[10][0] = 0x000033;
-	first->col.tab[10][1] = 0x003333;
-	first->col.tab[10][2] = 0x006633;
-	first->col.tab[10][3] = 0x009933;
-	first->col.tab[10][4] = 0x00CC33;
-	first->col.tab[10][5] = 0x00FF33;
-	first->col.tab[10][6] = 0x99FF33;
-	first->col.tab[10][7] = 0x99CC66;
-	first->col.tab[10][8] = 0x999933;
-	first->col.tab[10][9] = 0x996633;
-	first->col.tab[10][10] = 0x993333;
-	first->col.tab[10][11] = 0x990033;
-	first->col.tab[10][12] = 0xCC0033;
-	first->col.tab[10][13] = 0xCC3333;
-	first->col.tab[10][14] = 0xCC6633;
-	first->col.tab[10][15] = 0xCC9933;
-	first->col.tab[10][16] = 0xCCCC33;
-	first->col.tab[10][17] = 0xCCFF33;
-	ft_tabcolor_tds(first);
+	fs->col.tab[10][0] = 0x000033;
+	fs->col.tab[10][1] = 0x003333;
+	fs->col.tab[10][2] = 0x006633;
+	fs->col.tab[10][3] = 0x009933;
+	fs->col.tab[10][4] = 0x00CC33;
+	fs->col.tab[10][5] = 0x00FF33;
+	fs->col.tab[10][6] = 0x99FF33;
+	fs->col.tab[10][7] = 0x99CC66;
+	fs->col.tab[10][8] = 0x999933;
+	fs->col.tab[10][9] = 0x996633;
+	fs->col.tab[10][10] = 0x993333;
+	fs->col.tab[10][11] = 0x990033;
+	fs->col.tab[10][12] = 0xCC0033;
+	fs->col.tab[10][13] = 0xCC3333;
+	fs->col.tab[10][14] = 0xCC6633;
+	fs->col.tab[10][15] = 0xCC9933;
+	fs->col.tab[10][16] = 0xCCCC33;
+	fs->col.tab[10][17] = 0xCCFF33;
+	ft_tabcolor_tds(fs);
 }

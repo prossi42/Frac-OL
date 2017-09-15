@@ -17,7 +17,8 @@ NAME = fractol
 SRC_PATH = src
 
 SRC_NAME = main.c ft_init_struct.c ft_affich.c ft_mandel.c ft_mlx.c \
-			ft_tabcolor.c ft_tabcolor_sd.c ft_tabcolor_td.c ft_tricorn.c
+			ft_tabcolor.c ft_tabcolor_sd.c ft_tabcolor_td.c ft_tricorn.c \
+			ft_color.c ft_julia.c
 
 # OBJ_PATH = $(SRC_PATH)
 
@@ -25,7 +26,7 @@ LDFLAGS = -Llibft
 LDLIBS = libft/my_libft.a
 
 CC = gcc
-CFLAGS = -lmlx -framework OpenGL -framework Appkit 
+CFLAGS = -lmlx -framework OpenGL -framework Appkit
 
 # OBJ_NAME = $(SRC_NAME:.c=.o)
 
