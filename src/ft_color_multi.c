@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_color.c                                         :+:      :+:    :+:   */
+/*   ft_color_multi.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/15 11:58:34 by prossi            #+#    #+#             */
-/*   Updated: 2017/09/15 11:58:38 by prossi           ###   ########.fr       */
+/*   Created: 2017/09/18 14:20:16 by prossi            #+#    #+#             */
+/*   Updated: 2017/09/18 14:20:19 by prossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
 
-void 	ft_color_ext(t_fs *fs, int x, int y, int i)
+void 	ft_color_ext_multi(t_fs *fs, int x, int y, int i)
 {
 	if (fs->psy == 1)
 	{
 		fs->col.nike += 1;
-		mlx_pixel_put_to_image(fs->sd, x, y, fs->col.tab[fs->col.cyy][fs->col.cxx]);
+		mlx_pixel_put_to_image_multi(fs->multi, x, y, fs->col.tab[fs->col.cyy][fs->col.cxx]);
 		if (fs->col.nike > 1000)
 		{
 			if (fs->col.cyy == 0)
@@ -32,16 +32,15 @@ void 	ft_color_ext(t_fs *fs, int x, int y, int i)
 		}
 	}
 	else
-		mlx_pixel_put_to_image(fs->sd, x, y, fs->col.tab[5][i]);
+		mlx_pixel_put_to_image_multi(fs->multi, x, y, fs->col.tab[5][i]);
 }
 
-void 	ft_color_tricorn(t_fs *fs, int x, int y)
+void 	ft_color_tricorn_multi(t_fs *fs, int x, int y)
 {
 	if (fs->psy == 1)
 	{
 		fs->col.swoosh += 0.10;
-		mlx_pixel_put_to_image(fs->sd, x, y, fs->col.tab[fs->col.cy][fs->col.cx]);
-		// mlx_pixel_put_to_image(fs->sd, x, y, 0x333CC);
+		mlx_pixel_put_to_image_multi(fs->multi, x, y, fs->col.tab[fs->col.cy][fs->col.cx]);
 		if (fs->col.swoosh > 10)
 		{
 			if (fs->col.cy == 11)
@@ -56,5 +55,5 @@ void 	ft_color_tricorn(t_fs *fs, int x, int y)
 		}
 	}
 	else
-		mlx_pixel_put_to_image(fs->sd, x, y, 0x000000);
+		mlx_pixel_put_to_image_multi(fs->multi, x, y, 0x000000);
 }

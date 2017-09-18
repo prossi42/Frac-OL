@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mandel.c                                        :+:      :+:    :+:   */
+/*   ft_mandel_multi.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/08 13:42:09 by prossi            #+#    #+#             */
-/*   Updated: 2017/09/08 13:42:20 by prossi           ###   ########.fr       */
+/*   Created: 2017/09/18 14:13:49 by prossi            #+#    #+#             */
+/*   Updated: 2017/09/18 14:13:51 by prossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
 
-void	ft_mandel(t_fs *fs)
+void	ft_mandel_multi(t_fs *fs)
 {
 	int			x;
 	int			y;
@@ -25,24 +25,24 @@ void	ft_mandel(t_fs *fs)
 		y = 0;
 		while (y < WINSIZE_Y)
 		{
-			fs->sd.cr = ((x / fs->sd.zoom) + fs->sd.xmin);
-			fs->sd.ci = ((y / fs->sd.zoom) + fs->sd.ymin);
-			fs->sd.zr = 0;
-			fs->sd.zi = 0;
+			fs->multi.cr = ((x / fs->multi.zoom) + fs->multi.xmin);
+			fs->multi.ci = ((y / fs->multi.zoom) + fs->multi.ymin);
+			fs->multi.zr = 0;
+			fs->multi.zi = 0;
 			i = 0;
-			while (fs->sd.zr * fs->sd.zr + fs->sd.zi * fs->sd.zi < fs->sd.mere && i < fs->sd.itmax)
+			while (fs->multi.zr * fs->multi.zr + fs->multi.zi * fs->multi.zi < fs->multi.mere && i < fs->multi.itmax)
 			{
-				tmp = fs->sd.zr;
-				fs->sd.zr = fs->sd.zr * fs->sd.zr - fs->sd.zi * fs->sd.zi + fs->sd.cr;
-				fs->sd.zi = fs->sd.jf * fs->sd.zi * tmp + fs->sd.ci;
+				tmp = fs->multi.zr;
+				fs->multi.zr = fs->multi.zr * fs->multi.zr - fs->multi.zi * fs->multi.zi + fs->multi.cr;
+				fs->multi.zi = fs->multi.jf * fs->multi.zi * tmp + fs->multi.ci;
 				i++;
 			}
-			if (i == fs->sd.itmax)
+			if (i == fs->multi.itmax)
 			{
-				ft_color_tricorn(fs, x, y);
+				ft_color_tricorn_multi(fs, x, y);
 			}
 			else
-				ft_color_ext(fs, x, y, i);
+				ft_color_ext_multi(fs, x, y, i);
 			y++;
 		}
 		x++;

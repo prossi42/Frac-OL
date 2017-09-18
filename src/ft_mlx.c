@@ -50,6 +50,36 @@ int		key_hook(int keycode, t_fs *fs)
 		else
 			fs->psy = 0;
 	}
+	if (keycode == 36)
+	{
+		if (fs->m == 1)
+			ft_init_struct(fs, 0);
+		if (fs->m == 2)
+			ft_init_struct(fs, 1);
+		if (fs->m == 3)
+			ft_init_struct(fs, 2);
+	}
+	if (keycode == 18)
+	{
+		ft_init_struct(fs, 0);
+		fs->m = 1;
+	}
+	if (keycode == 19)
+	{
+		ft_init_struct(fs, 1);
+		fs->m = 2;
+	}
+	if (keycode == 20)
+	{
+		ft_init_struct(fs, 2);
+		fs->m = 3;
+	}
+	if (keycode == 83)
+		multiscreen(fs, 1);
+	if (keycode == 84)
+		multiscreen(fs, 2);
+	if (keycode == 85)
+		multiscreen(fs, 3);
 	mlx_destroy_image(fs->sd.init, fs->sd.img);
 	ft_init_struct(fs, 3);
 	fs->sd.img = mlx_new_image(fs->sd.init, WINSIZE_X, WINSIZE_Y);

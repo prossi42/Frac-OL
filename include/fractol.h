@@ -16,11 +16,40 @@
 # include <mlx.h>
 # include "../libft/include/off_libft/libft.h"
 # include "../libft/include/pimp_libft/my_libft.h"
-# define WINSIZE_X 800
-# define WINSIZE_Y 800
-/*
-** Structure de la Fractale de Mandelbrot
-*/
+# define WINSIZE_X 600
+# define WINSIZE_Y 600
+
+typedef struct		s_multi
+{
+	void			*init;
+	void			*initsd;
+	void			*inittd;
+	void 			*wdow;
+	void 			*wdowsd;
+	void 			*wdowtd;
+	void			*img;
+	void			*imgsd;
+	void			*imgtd;
+	char			*map;
+	char			*mapsd;
+	char			*maptd;
+	int				bpp;
+	int				size_line;
+	int				endian;
+	double			xmin;
+	double			xmax;
+	double			ymin;
+	double			ymax;
+	double			cr;
+	double			ci;
+	double			zr;
+	double			zi;
+	int				itmax;
+	double			zoom;
+	double			mere;
+	double			jf;
+	int				frac;
+}					t_multi;
 
 typedef struct		s_col
 {
@@ -47,8 +76,6 @@ typedef struct		s_sd
 	double			ci;
 	double			zr;
 	double			zi;
-	int				img_x;
-	int				img_y;
 	int				itmax;
 	int				endian;
 	double			zoom;
@@ -56,14 +83,15 @@ typedef struct		s_sd
 	int				size_line;
 	double			mere;
 	double			jf;
-	int				slide;
 }					t_sd;
 
 typedef struct		s_fs
 {
 	t_sd			sd;
 	t_col			col;
+	t_multi			multi;
 	int				m;
+	int				p;
 	int				psy;
 }					t_fs;
 
@@ -80,4 +108,15 @@ void				ft_tabcolor_td(t_fs *fs);
 void				ft_color_tricorn(t_fs *fs, int x, int y);
 void				ft_color_ext(t_fs *fs, int x, int y, int i);
 void				ft_julia(t_fs *fs);
+void				multiscreen(t_fs *fs, int option);
+void				ft_mandel_multi(t_fs *fs);
+void				ft_tricorn_multi(t_fs *fs);
+void 				ft_julia_multi(t_fs *fs);
+void				ft_color_multi(t_fs *fs);
+void				ft_color_tricorn_multi(t_fs *fs, int x, int y);
+void				ft_color_ext_multi(t_fs *fs, int x, int y, int i);
+void				ft_init_struct_multi(t_fs *fs, int option);
+int					key_hook_multi(int keycode, t_fs *fs);
+void				mlx_pixel_put_to_image_multi(t_multi multi, int x, int y, \
+	int color);
 #endif
