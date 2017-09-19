@@ -31,7 +31,6 @@ void	ft_init_struct_multi(t_fs *fs, int option)
 		fs->multi.bpp = 4;
 		fs->multi.mere = 4;
 		fs->multi.jf = 2;
-		fs->psy = 0;
 	}
 	if (option == 1)
 	{
@@ -50,7 +49,7 @@ void	ft_init_struct_multi(t_fs *fs, int option)
 		fs->multi.bpp = 4;
 		fs->multi.mere = 4;
 		fs->multi.jf = -2;
-		fs->psy = 0;
+
 	}
 	if (option == 2)
 	{
@@ -69,6 +68,5 @@ void	ft_init_struct_multi(t_fs *fs, int option)
 		fs->multi.bpp = 4;
 		fs->multi.mere = 4;
 		fs->multi.jf = 2;
-		fs->psy = 0;
 	}
 }

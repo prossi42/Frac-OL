@@ -117,6 +117,12 @@ void				ft_color_tricorn_multi(t_fs *fs, int x, int y);
 void				ft_color_ext_multi(t_fs *fs, int x, int y, int i);
 void				ft_init_struct_multi(t_fs *fs, int option);
 int					key_hook_multi(int keycode, t_fs *fs);
+int					key_hook_multisd(int keycode, t_fs *fs);
+int					key_hook_multitd(int keycode, t_fs *fs);
 void				mlx_pixel_put_to_image_multi(t_multi multi, int x, int y, \
+	int color);
+void				mlx_pixel_put_to_image_multisd(t_multi multi, int x, int y, \
+	int color);
+void				mlx_pixel_put_to_image_multitd(t_multi multi, int x, int y, \
 	int color);
 #endif

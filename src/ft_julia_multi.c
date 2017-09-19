@@ -39,10 +39,10 @@ void 	ft_julia_multi(t_fs *fs)
 			}
 			if (i == fs->multi.itmax)
 			{
-				ft_color_tricorn(fs, x, y);
+				ft_color_tricorn_multi(fs, x, y);
 			}
 			else
-				ft_color_ext(fs, x, y, i);
+				ft_color_ext_multi(fs, x, y, i);
 			y++;
 		}
 		x++;

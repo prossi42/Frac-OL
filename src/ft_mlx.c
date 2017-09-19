@@ -96,6 +96,16 @@ int		key_hook(int keycode, t_fs *fs)
 	return (0);
 }
 
+int		mouse_hook(int button, int x, int y, void *param)
+{
+	ft_putchar('\n');
+	ft_putnbr(button);
+	ft_putchar('\n');
+	ft_putnbr(x);
+
+	return (0);
+}
+
 void	mlx_pixel_put_to_image(t_sd sd, int x, int y, int color)
 {
 	int			color1;
@@ -136,6 +146,7 @@ int		ft_mlx(t_fs *fs)
 	mlx_put_image_to_window(fs->sd.init, fs->sd.wdow, \
 		fs->sd.img, 0, 0);
 	mlx_hook(fs->sd.wdow, 2, (1L << 0), key_hook, fs);
+	mlx_hook(fs->sd.wdow, 6, (1L << 6), mouse_hook, fs);
 	mlx_loop(fs->sd.init);
 	return (0);
 }
