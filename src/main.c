@@ -45,7 +45,10 @@ int		main(int argc, char **argv)
 		return (-1);
 	}
 	if (ft_detect_map(&fs, argv) == -1)
+	{
+		ft_affich_fs(&fs, 0);
 		return (-1);
+	}
 	fs.col.tab = ft_tabint(18, 12);
 	ft_tabcolor(&fs);
 	ft_mlx(&fs);

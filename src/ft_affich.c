@@ -16,6 +16,7 @@ void	ft_affich_fs(t_fs *fs, int option)
 {
 	if (option == 0)
 	{
-		ft_putstr("\n Usage : ./exec. + map");
+		ft_putstr("\n Usage : ./exec. + map\n");
+		ft_putstr(" \t--> mandelbrot / tricorn / julia\n");
 	}
 }

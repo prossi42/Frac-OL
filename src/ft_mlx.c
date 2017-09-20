@@ -96,13 +96,56 @@ int		key_hook(int keycode, t_fs *fs)
 	return (0);
 }
 
-int		mouse_hook(int button, int x, int y, void *param)
+int		mouse_hook(int x, int y, t_fs *fs)
 {
-	ft_putchar('\n');
-	ft_putnbr(button);
-	ft_putchar('\n');
-	ft_putnbr(x);
+	if (fs->sd.pause == 1)
+		if (x >= 0 && x <= WINSIZE_X && y >= 0 && y <= WINSIZE_Y)
+		{
+			fs->sd.mouse_x = x;
+			fs->sd.mouse_y = y;
+		}
+	mlx_destroy_image(fs->sd.init, fs->sd.img);
+	ft_init_struct(fs, 3);
+	fs->sd.img = mlx_new_image(fs->sd.init, WINSIZE_X, WINSIZE_Y);
+	fs->sd.map = mlx_get_data_addr(fs->sd.img, &fs->sd.bpp, \
+		&fs->sd.size_line, &fs->sd.endian);
+	if (fs->m == 1)
+		ft_mandel(fs);
+	if (fs->m == 2)
+		ft_tricorn(fs);
+	if (fs->m == 3)
+		ft_julia(fs);
+	mlx_put_image_to_window(fs->sd.init, fs->sd.wdow, \
+		fs->sd.img, 0, 0);
+	return (0);
+}
 
+int		roll_hook(int button, int x, int y, t_fs *fs)
+{
+	if (button == 1)
+	{
+		if (fs->sd.pause == 0)
+			fs->sd.pause = 1;
+		else
+			fs->sd.pause = 0;
+	}
+	// if (button == 4)
+	// 	fs->sd.zoom += 10;
+	// if (button == 5)
+	// 	fs->sd.zoom -= 10;
+	mlx_destroy_image(fs->sd.init, fs->sd.img);
+	ft_init_struct(fs, 3);
+	fs->sd.img = mlx_new_image(fs->sd.init, WINSIZE_X, WINSIZE_Y);
+	fs->sd.map = mlx_get_data_addr(fs->sd.img, &fs->sd.bpp, \
+		&fs->sd.size_line, &fs->sd.endian);
+	if (fs->m == 1)
+		ft_mandel(fs);
+	if (fs->m == 2)
+		ft_tricorn(fs);
+	if (fs->m == 3)
+		ft_julia(fs);
+	mlx_put_image_to_window(fs->sd.init, fs->sd.wdow, \
+		fs->sd.img, 0, 0);
 	return (0);
 }
 
@@ -147,6 +190,7 @@ int		ft_mlx(t_fs *fs)
 		fs->sd.img, 0, 0);
 	mlx_hook(fs->sd.wdow, 2, (1L << 0), key_hook, fs);
 	mlx_hook(fs->sd.wdow, 6, (1L << 6), mouse_hook, fs);
+	mlx_hook(fs->sd.wdow, 4, (1L << 2), roll_hook, fs);
 	mlx_loop(fs->sd.init);
 	return (0);
 }

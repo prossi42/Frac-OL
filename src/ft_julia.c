@@ -27,8 +27,8 @@ void 	ft_julia(t_fs *fs)
 		{
 			fs->sd.cr = 0.285;
 			fs->sd.ci = 0.01;
-			fs->sd.zr = ((x / fs->sd.zoom) + fs->sd.xmin);
-			fs->sd.zi = ((y / fs->sd.zoom) + fs->sd.ymin);
+			fs->sd.zr = (((x - fs->sd.mouse_x) / fs->sd.zoom) + fs->sd.xmin);
+			fs->sd.zi = (((y - fs->sd.mouse_y) / fs->sd.zoom) + fs->sd.ymin);
 			i = 0;
 			while (fs->sd.zr * fs->sd.zr + fs->sd.zi * fs->sd.zi < fs->sd.mere && i < fs->sd.itmax)
 			{

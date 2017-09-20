@@ -83,6 +83,9 @@ typedef struct		s_sd
 	int				size_line;
 	double			mere;
 	double			jf;
+	int				mouse_x;
+	int				mouse_y;
+	int				pause;
 }					t_sd;
 
 typedef struct		s_fs
@@ -125,4 +128,5 @@ void				mlx_pixel_put_to_image_multisd(t_multi multi, int x, int y, \
 	int color);
 void				mlx_pixel_put_to_image_multitd(t_multi multi, int x, int y, \
 	int color);
+void				ft_julia_bis(t_fs *fs);
 #endif

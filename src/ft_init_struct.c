@@ -32,6 +32,8 @@ void	ft_init_struct(t_fs *fs, int option)
 		fs->sd.mere = 4;
 		fs->sd.jf = 2;
 		fs->psy = 0;
+		fs->sd.mouse_x = 0;
+		fs->sd.mouse_y = 0;
 	}
 	if (option == 1)
 	{
@@ -51,6 +53,8 @@ void	ft_init_struct(t_fs *fs, int option)
 		fs->sd.mere = 4;
 		fs->sd.jf = -2;
 		fs->psy = 0;
+		fs->sd.mouse_x = 0;
+		fs->sd.mouse_y = 0;
 	}
 	if (option == 2)
 	{
@@ -70,10 +74,8 @@ void	ft_init_struct(t_fs *fs, int option)
 		fs->sd.mere = 4;
 		fs->sd.jf = 2;
 		fs->psy = 0;
+		fs->sd.mouse_x = 0;
+		fs->sd.mouse_y = 0;
+		fs->sd.pause = 0;
 	}
-	// if (option == 1)
-	// {
-	// 	fs->sd.img_x = (fs->sd.xmax - fs->sd.xmin) * fs->sd.zoom;
-	// 	fs->sd.img_y = (fs->sd.ymax - fs->sd.ymin) * fs->sd.zoom;
-	// }
 }
