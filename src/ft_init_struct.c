@@ -77,5 +77,6 @@ void	ft_init_struct(t_fs *fs, int option)
 		fs->sd.mouse_x = 0;
 		fs->sd.mouse_y = 0;
 		fs->sd.pause = 0;
+		fs->sd.center = 300;
 	}
 }

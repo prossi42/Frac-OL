@@ -74,6 +74,10 @@ int		key_hook(int keycode, t_fs *fs)
 		ft_init_struct(fs, 2);
 		fs->m = 3;
 	}
+	if (keycode == 34)
+		fs->sd.itmax++;
+	if (keycode == 38)
+	 	fs->sd.itmax--;
 	if (keycode == 83)
 		multiscreen(fs, 1);
 	if (keycode == 84)
@@ -129,10 +133,16 @@ int		roll_hook(int button, int x, int y, t_fs *fs)
 		else
 			fs->sd.pause = 0;
 	}
-	// if (button == 4)
-	// 	fs->sd.zoom += 10;
-	// if (button == 5)
-	// 	fs->sd.zoom -= 10;
+	if (button == 4)
+	{
+		fs->sd.zoom += 10;
+		fs->sd.center += 25;
+	}
+	if (button == 5)
+	{
+		fs->sd.zoom -= 10;
+		fs->sd.center -= 25;
+	}
 	mlx_destroy_image(fs->sd.init, fs->sd.img);
 	ft_init_struct(fs, 3);
 	fs->sd.img = mlx_new_image(fs->sd.init, WINSIZE_X, WINSIZE_Y);

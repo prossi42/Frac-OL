@@ -86,6 +86,7 @@ typedef struct		s_sd
 	int				mouse_x;
 	int				mouse_y;
 	int				pause;
+	int				center;
 }					t_sd;
 
 typedef struct		s_fs
