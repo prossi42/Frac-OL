@@ -26,10 +26,10 @@ SRC_NAME = main.c ft_init_struct.c ft_affich.c ft_mandel.c ft_mlx.c \
 # OBJ_PATH = $(SRC_PATH)
 
 LDFLAGS = -Llibft
-LDLIBS = libft/my_libft.a
+LDLIBS = libft/my_libft.a mlx/libmlx.a
 
 CC = gcc
-CFLAGS = -lmlx -framework OpenGL -framework Appkit
+CFLAGS = -framework OpenGL -framework Appkit -O3 -march=native
 
 # OBJ_NAME = $(SRC_NAME:.c=.o)
 
@@ -40,6 +40,7 @@ all: $(NAME)
 
 $(NAME): $(SRC)
 	cd libft/ ; make re; make clean ; cd ..
+	cd mlx/ ; make re ; cd ..
 	$(CC) $(LDFLAGS) $(LDLIBS) -o $@ $^ $(CFLAGS)
 
 clean:
@@ -48,5 +49,6 @@ clean:
 
 fclean: clean
 	cd libft/ ; make fclean ; cd .. ; rm -fv $(NAME)
+	cd mlx/ ; make fclean ; cd ..
 
 re: fclean all

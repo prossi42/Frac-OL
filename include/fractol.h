@@ -13,7 +13,7 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include <mlx.h>
+# include "../mlx/mlx.h"
 # include "../libft/include/off_libft/libft.h"
 # include "../libft/include/pimp_libft/my_libft.h"
 # define WINSIZE_X 600
@@ -87,6 +87,7 @@ typedef struct		s_sd
 	int				mouse_y;
 	int				pause;
 	int				center;
+	int				var;
 }					t_sd;
 
 typedef struct		s_fs
@@ -96,6 +97,8 @@ typedef struct		s_fs
 	t_multi			multi;
 	int				m;
 	int				p;
+	int				x;
+	int				y;
 	int				psy;
 }					t_fs;
 

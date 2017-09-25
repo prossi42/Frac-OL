@@ -102,12 +102,34 @@ int		key_hook(int keycode, t_fs *fs)
 
 int		mouse_hook(int x, int y, t_fs *fs)
 {
-	if (fs->sd.pause == 1)
-		if (x >= 0 && x <= WINSIZE_X && y >= 0 && y <= WINSIZE_Y)
+	if (x >= 0 && x <= WINSIZE_X && y >= 0 && y <= WINSIZE_Y)
+	{
+		fs->sd.mouse_x = x;
+		fs->sd.mouse_y = y;
+		if (fs->sd.var == 1)
 		{
-			fs->sd.mouse_x = x;
-			fs->sd.mouse_y = y;
+			if (x < (WINSIZE_X / 2))
+			{
+				fs->sd.cr -= 0.005;
+				fs->sd.ci -= 0.005;
+			}
+			if (x > (WINSIZE_X / 2))
+			{
+				fs->sd.cr += 0.005;
+				fs->sd.ci += 0.005;
+			}
+			if (y < (WINSIZE_Y / 2))
+			{
+				fs->sd.cr -= 0.005;
+				fs->sd.ci -= 0.005;
+			}
+			if (y > (WINSIZE_Y / 2))
+			{
+				fs->sd.cr += 0.005;
+				fs->sd.ci += 0.005;
+			}
 		}
+	}
 	mlx_destroy_image(fs->sd.init, fs->sd.img);
 	ft_init_struct(fs, 3);
 	fs->sd.img = mlx_new_image(fs->sd.init, WINSIZE_X, WINSIZE_Y);
@@ -132,6 +154,13 @@ int		roll_hook(int button, int x, int y, t_fs *fs)
 			fs->sd.pause = 1;
 		else
 			fs->sd.pause = 0;
+	}
+	if (button == 2)
+	{
+		if (fs->sd.var == 0)
+			fs->sd.var = 1;
+		else
+			fs->sd.var = 0;
 	}
 	if (button == 4)
 	{

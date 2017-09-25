@@ -58,6 +58,8 @@ void	ft_init_struct(t_fs *fs, int option)
 	}
 	if (option == 2)
 	{
+		fs->sd.cr = 0.285;
+		fs->sd.ci = 0.01;
 		fs->sd.xmin = -2;
 		fs->sd.xmax = 1;
 		fs->sd.ymin = -2;
@@ -78,5 +80,6 @@ void	ft_init_struct(t_fs *fs, int option)
 		fs->sd.mouse_y = 0;
 		fs->sd.pause = 0;
 		fs->sd.center = 300;
+		fs->sd.var = 0;
 	}
 }

@@ -12,6 +12,12 @@
 
 #include "../include/fractol.h"
 
+void	julia_move(t_fs *fs, int x, int y)
+{
+	fs->sd.zr = (((x - (fs->sd.mouse_x - fs->sd.center)) / fs->sd.zoom) + fs->sd.xmin);
+	fs->sd.zi = (((y - (fs->sd.mouse_y - fs->sd.center)) / fs->sd.zoom) + fs->sd.ymin);
+}
+
 void 	ft_julia(t_fs *fs)
 {
 	int			x;
@@ -25,13 +31,8 @@ void 	ft_julia(t_fs *fs)
 		y = 0;
 		while (y < WINSIZE_Y)
 		{
-			fs->sd.cr = 0.285;
-			fs->sd.ci = 0.01;
-			if (fs->sd.mouse_x != 0)
-			{
-				fs->sd.zr = (((x - (fs->sd.mouse_x - fs->sd.center)) / fs->sd.zoom) + fs->sd.xmin);
-				fs->sd.zi = (((y - (fs->sd.mouse_y - fs->sd.center)) / fs->sd.zoom) + fs->sd.ymin);
-			}
+			if (fs->sd.pause != 0)
+				julia_move(fs, x, y);
 			else
 			{
 				fs->sd.zr = ((x / fs->sd.zoom) + fs->sd.xmin);
