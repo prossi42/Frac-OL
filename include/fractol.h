@@ -108,7 +108,7 @@ void 				ft_mandel(t_fs *fs);
 void				ft_tricorn(t_fs *fs);
 void				mlx_pixel_put_to_image(t_sd sd, int x, int y, \
 	int color);
-void				ft_affich_fs(t_fs *fs, int option);
+void				ft_affich_fs(int option);
 void				ft_tabcolor(t_fs *fs);
 void				ft_tabcolor_sd(t_fs *fs);
 void				ft_tabcolor_td(t_fs *fs);

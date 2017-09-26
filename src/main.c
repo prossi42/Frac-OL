@@ -41,12 +41,12 @@ int		main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_affich_fs(&fs, 0);
+		ft_affich_fs(0);
 		return (-1);
 	}
 	if (ft_detect_map(&fs, argv) == -1)
 	{
-		ft_affich_fs(&fs, 0);
+		ft_affich_fs(0);
 		return (-1);
 	}
 	fs.col.tab = ft_tabint(18, 12);

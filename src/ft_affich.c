@@ -12,7 +12,7 @@
 
 #include "../include/fractol.h"
 
-void	ft_affich_fs(t_fs *fs, int option)
+void	ft_affich_fs(int option)
 {
 	if (option == 0)
 	{

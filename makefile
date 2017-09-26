@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY: all, clean, fclean, re
+.PHONY: all, opti, clean, fclean, re
 
 NAME = fractol
 
@@ -28,8 +28,9 @@ SRC_NAME = main.c ft_init_struct.c ft_affich.c ft_mandel.c ft_mlx.c \
 LDFLAGS = -Llibft
 LDLIBS = libft/my_libft.a mlx/libmlx.a
 
-CC = gcc
-CFLAGS = -framework OpenGL -framework Appkit -O3 -march=native
+CC = gcc -Wall -Wextra -Werror
+CFLAGS = -framework OpenGL -framework Appkit
+CFLAGSOPTI = -framework OpenGL -framework Appkit -O3 -march=native
 
 # OBJ_NAME = $(SRC_NAME:.c=.o)
 
@@ -37,6 +38,11 @@ SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 # OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
 all: $(NAME)
+
+opti: $(SRC)
+		cd libft/ ; make re ; make clean ; cd ..
+		cd mlx/ ; make re ; cd ..
+		$(CC) $(LDFLAGS) $(LDLIBS) -o fractol $^ $(CFLAGSOPTI)
 
 $(NAME): $(SRC)
 	cd libft/ ; make re; make clean ; cd ..
@@ -49,6 +55,8 @@ clean:
 
 fclean: clean
 	cd libft/ ; make fclean ; cd .. ; rm -fv $(NAME)
-	cd mlx/ ; make fclean ; cd ..
+	cd mlx/ ; make clean ; cd ..
 
 re: fclean all
+
+reopti: fclean opti

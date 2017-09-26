@@ -28,9 +28,13 @@ int		key_hook(int keycode, t_fs *fs)
 	if (keycode == 126)
 		fs->sd.ymin += 0.10;
 	if (keycode == 69)
+	{
 		fs->sd.zoom += 10;
+	}
 	if (keycode == 78)
+	{
 		fs->sd.zoom -= 10;
+	}
 	if (keycode == 67)
 		if (fs->sd.mere < 4)
 			fs->sd.mere += 0.05;
@@ -104,31 +108,31 @@ int		mouse_hook(int x, int y, t_fs *fs)
 {
 	if (x >= 0 && x <= WINSIZE_X && y >= 0 && y <= WINSIZE_Y)
 	{
-		fs->sd.mouse_x = x;
-		fs->sd.mouse_y = y;
 		if (fs->sd.var == 1)
 		{
-			if (x < (WINSIZE_X / 2))
+			if (x < (WINSIZE_X / 2) && y < (WINSIZE_Y / 2))
 			{
-				fs->sd.cr -= 0.005;
-				fs->sd.ci -= 0.005;
+				fs->sd.cr = (x < fs->sd.mouse_x) ? (fs->sd.cr + 0.03) : (fs->sd.cr - 0.03);
+				fs->sd.ci = (y < fs->sd.mouse_y) ? (fs->sd.ci + 0.03) : (fs->sd.ci - 0.03);
 			}
-			if (x > (WINSIZE_X / 2))
+			if (x > (WINSIZE_X / 2) && y < (WINSIZE_Y / 2))
 			{
-				fs->sd.cr += 0.005;
-				fs->sd.ci += 0.005;
+				fs->sd.cr = (x > fs->sd.mouse_x) ? (fs->sd.cr + 0.03) : (fs->sd.cr - 0.03);
+				fs->sd.ci = (y < fs->sd.mouse_y) ? (fs->sd.ci + 0.03) : (fs->sd.ci - 0.03);
 			}
-			if (y < (WINSIZE_Y / 2))
+			if (y > (WINSIZE_Y / 2) && x < (WINSIZE_X / 2))
 			{
-				fs->sd.cr -= 0.005;
-				fs->sd.ci -= 0.005;
+				fs->sd.cr = (x < fs->sd.mouse_x) ? (fs->sd.cr - 0.03) : (fs->sd.cr + 0.03);
+				fs->sd.ci = (y > fs->sd.mouse_y) ? (fs->sd.ci - 0.03) : (fs->sd.ci + 0.03);
 			}
-			if (y > (WINSIZE_Y / 2))
+			if (y > (WINSIZE_Y / 2) && x > (WINSIZE_X / 2))
 			{
-				fs->sd.cr += 0.005;
-				fs->sd.ci += 0.005;
+				fs->sd.cr = (x > fs->sd.mouse_x) ? (fs->sd.cr - 0.03) : (fs->sd.cr + 0.03);
+				fs->sd.ci = (y > fs->sd.mouse_y) ? (fs->sd.ci - 0.03) : (fs->sd.ci + 0.03);
 			}
 		}
+		fs->sd.mouse_x = x;
+		fs->sd.mouse_y = y;
 	}
 	mlx_destroy_image(fs->sd.init, fs->sd.img);
 	ft_init_struct(fs, 3);
@@ -165,15 +169,16 @@ int		roll_hook(int button, int x, int y, t_fs *fs)
 	if (button == 4)
 	{
 		fs->sd.zoom += 10;
-		fs->sd.center += 25;
+		fs->sd.xmin += ((WINSIZE_X / x) / 5);
+		fs->sd.ymin += ((WINSIZE_Y / y) / 5);
 	}
 	if (button == 5)
 	{
 		fs->sd.zoom -= 10;
-		fs->sd.center -= 25;
+		fs->sd.xmin -= (fs->sd.mouse_x / WINSIZE_X);
+		fs->sd.ymin -= (fs->sd.mouse_y / WINSIZE_Y);
 	}
 	mlx_destroy_image(fs->sd.init, fs->sd.img);
-	ft_init_struct(fs, 3);
 	fs->sd.img = mlx_new_image(fs->sd.init, WINSIZE_X, WINSIZE_Y);
 	fs->sd.map = mlx_get_data_addr(fs->sd.img, &fs->sd.bpp, \
 		&fs->sd.size_line, &fs->sd.endian);
