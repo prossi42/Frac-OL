@@ -81,5 +81,7 @@ void	ft_init_struct(t_fs *fs, int option)
 		fs->sd.pause = 0;
 		fs->sd.center = 300;
 		fs->sd.var = 0;
+		fs->x = 0;
+		fs->y = 0;
 	}
 }

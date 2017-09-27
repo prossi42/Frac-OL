@@ -35,8 +35,8 @@ void 	ft_julia(t_fs *fs)
 				julia_move(fs, x, y);
 			else
 			{
-				fs->sd.zr = ((x / fs->sd.zoom) + fs->sd.xmin);
-				fs->sd.zi = ((y / fs->sd.zoom) + fs->sd.ymin);
+				fs->sd.zr = (((x - fs->x) / fs->sd.zoom) + fs->sd.xmin);
+				fs->sd.zi = (((y - fs->y) / fs->sd.zoom) + fs->sd.ymin);
 			}
 			i = 0;
 			while (fs->sd.zr * fs->sd.zr + fs->sd.zi * fs->sd.zi < fs->sd.mere && i < fs->sd.itmax)

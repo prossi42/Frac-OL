@@ -14,6 +14,7 @@
 # define FRACTOL_H
 
 # include "../mlx/mlx.h"
+# include <stdio.h>
 # include "../libft/include/off_libft/libft.h"
 # include "../libft/include/pimp_libft/my_libft.h"
 # define WINSIZE_X 600

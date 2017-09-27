@@ -20,13 +20,25 @@ int		key_hook(int keycode, t_fs *fs)
 		exit(-1);
 	}
 	if (keycode == 123)
+	{
 		fs->sd.xmin += 0.10;
+		fs->sd.xmax += 0.10;
+	}
 	if (keycode == 124)
+	{
 		fs->sd.xmin -= 0.10;
+		fs->sd.xmax -= 0.10;
+	}
 	if (keycode == 125)
+	{
 		fs->sd.ymin -= 0.10;
+		fs->sd.ymax -= 0.10;
+	}
 	if (keycode == 126)
+	{
 		fs->sd.ymin += 0.10;
+		fs->sd.ymax += 0.10;
+	}
 	if (keycode == 69)
 	{
 		fs->sd.zoom += 10;
@@ -89,7 +101,6 @@ int		key_hook(int keycode, t_fs *fs)
 	if (keycode == 85)
 		multiscreen(fs, 3);
 	mlx_destroy_image(fs->sd.init, fs->sd.img);
-	ft_init_struct(fs, 3);
 	fs->sd.img = mlx_new_image(fs->sd.init, WINSIZE_X, WINSIZE_Y);
 	fs->sd.map = mlx_get_data_addr(fs->sd.img, &fs->sd.bpp, \
 		&fs->sd.size_line, &fs->sd.endian);
@@ -135,7 +146,6 @@ int		mouse_hook(int x, int y, t_fs *fs)
 		fs->sd.mouse_y = y;
 	}
 	mlx_destroy_image(fs->sd.init, fs->sd.img);
-	ft_init_struct(fs, 3);
 	fs->sd.img = mlx_new_image(fs->sd.init, WINSIZE_X, WINSIZE_Y);
 	fs->sd.map = mlx_get_data_addr(fs->sd.img, &fs->sd.bpp, \
 		&fs->sd.size_line, &fs->sd.endian);
@@ -168,15 +178,30 @@ int		roll_hook(int button, int x, int y, t_fs *fs)
 	}
 	if (button == 4)
 	{
-		fs->sd.zoom += 10;
-		fs->sd.xmin += ((WINSIZE_X / x) / 5);
-		fs->sd.ymin += ((WINSIZE_Y / y) / 5);
+		if (x < (WINSIZE_X / 2) && y < (WINSIZE_Y / 2))
+		{
+			fs->x = (WINSIZE_X / 4);
+			fs->y = (WINSIZE_Y / 4);
+		}
+		if (x > (WINSIZE_X / 2) && y < (WINSIZE_Y / 2))
+		{
+			fs->x = ((WINSIZE_X / 4) * 3);
+			fs->y = (WINSIZE_Y / 4);
+		}
+		if (x < (WINSIZE_X / 2) && y > (WINSIZE_Y / 2))
+		{
+			fs->x = (WINSIZE_X / 4);
+			fs->y = ((WINSIZE_X / 4) * 3);
+		}
+		if (x > (WINSIZE_X / 2) && y > (WINSIZE_Y / 2))
+		{
+			fs->x = ((WINSIZE_X / 4) * 3);
+			fs->y = ((WINSIZE_X / 4) * 3);
+		}
 	}
 	if (button == 5)
 	{
 		fs->sd.zoom -= 10;
-		fs->sd.xmin -= (fs->sd.mouse_x / WINSIZE_X);
-		fs->sd.ymin -= (fs->sd.mouse_y / WINSIZE_Y);
 	}
 	mlx_destroy_image(fs->sd.init, fs->sd.img);
 	fs->sd.img = mlx_new_image(fs->sd.init, WINSIZE_X, WINSIZE_Y);
