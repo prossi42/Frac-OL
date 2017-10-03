@@ -50,6 +50,9 @@ typedef struct		s_multi
 	double			mere;
 	double			jf;
 	int				frac;
+	int				x;
+	int				y;
+	double			tmp;
 }					t_multi;
 
 typedef struct		s_col
@@ -89,6 +92,9 @@ typedef struct		s_sd
 	int				pause;
 	int				center;
 	int				var;
+	int				x;
+	int				y;
+	double			tmp;
 }					t_sd;
 
 typedef struct		s_fs
@@ -98,8 +104,6 @@ typedef struct		s_fs
 	t_multi			multi;
 	int				m;
 	int				p;
-	int				x;
-	int				y;
 	int				psy;
 }					t_fs;
 

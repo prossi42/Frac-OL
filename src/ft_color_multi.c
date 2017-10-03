@@ -12,17 +12,37 @@
 
 #include "../include/fractol.h"
 
-void 	ft_color_ext_multi(t_fs *fs, int x, int y, int i)
+void	ft_color_ext_multi_sd(t_fs *fs, int x, int y, int i)
+{
+	if (fs->psy == 1)
+	{
+		if (fs->p == 1)
+			mlx_pixel_put_to_image_multi(fs->multi, x, y, \
+				fs->col.tab[fs->col.cyy][fs->col.cxx]);
+		if (fs->p == 2)
+			mlx_pixel_put_to_image_multisd(fs->multi, x, y, \
+				fs->col.tab[fs->col.cyy][fs->col.cxx]);
+		if (fs->p == 3)
+			mlx_pixel_put_to_image_multitd(fs->multi, x, y, \
+				fs->col.tab[fs->col.cyy][fs->col.cxx]);
+	}
+	else
+	{
+		if (fs->p == 1)
+			mlx_pixel_put_to_image_multi(fs->multi, x, y, fs->col.tab[5][i]);
+		if (fs->p == 2)
+			mlx_pixel_put_to_image_multisd(fs->multi, x, y, fs->col.tab[5][i]);
+		if (fs->p == 3)
+			mlx_pixel_put_to_image_multitd(fs->multi, x, y, fs->col.tab[5][i]);
+	}
+}
+
+void	ft_color_ext_multi(t_fs *fs, int x, int y, int i)
 {
 	if (fs->psy == 1)
 	{
 		fs->col.nike += 1;
-		if (fs->p == 1)
-			mlx_pixel_put_to_image_multi(fs->multi, x, y, fs->col.tab[fs->col.cyy][fs->col.cxx]);
-		if (fs->p == 2)
-			mlx_pixel_put_to_image_multisd(fs->multi, x, y, fs->col.tab[fs->col.cyy][fs->col.cxx]);
-		if (fs->p == 3)
-			mlx_pixel_put_to_image_multitd(fs->multi, x, y, fs->col.tab[fs->col.cyy][fs->col.cxx]);
+		ft_color_ext_multi_sd(fs, x, y, i);
 		if (fs->col.nike > 1000)
 		{
 			if (fs->col.cyy == 0)
@@ -37,27 +57,40 @@ void 	ft_color_ext_multi(t_fs *fs, int x, int y, int i)
 		}
 	}
 	else
+		ft_color_ext_multi_sd(fs, x, y, i);
+}
+
+void	ft_color_tricorn_multi_sd(t_fs *fs, int x, int y)
+{
+	if (fs->psy == 1)
 	{
 		if (fs->p == 1)
-			mlx_pixel_put_to_image_multi(fs->multi, x, y, fs->col.tab[5][i]);
+			mlx_pixel_put_to_image_multi(fs->multi, x, y, \
+				fs->col.tab[fs->col.cy][fs->col.cx]);
 		if (fs->p == 2)
-			mlx_pixel_put_to_image_multisd(fs->multi, x, y, fs->col.tab[5][i]);
+			mlx_pixel_put_to_image_multisd(fs->multi, x, y, \
+				fs->col.tab[fs->col.cy][fs->col.cx]);
 		if (fs->p == 3)
-			mlx_pixel_put_to_image_multitd(fs->multi, x, y, fs->col.tab[5][i]);
+			mlx_pixel_put_to_image_multitd(fs->multi, x, y, \
+				fs->col.tab[fs->col.cy][fs->col.cx]);
+	}
+	else
+	{
+		if (fs->p == 1)
+			mlx_pixel_put_to_image_multi(fs->multi, x, y, 0x000000);
+		if (fs->p == 2)
+			mlx_pixel_put_to_image_multisd(fs->multi, x, y, 0x000000);
+		if (fs->p == 3)
+			mlx_pixel_put_to_image_multitd(fs->multi, x, y, 0x000000);
 	}
 }
 
-void 	ft_color_tricorn_multi(t_fs *fs, int x, int y)
+void	ft_color_tricorn_multi(t_fs *fs, int x, int y)
 {
 	if (fs->psy == 1)
 	{
 		fs->col.swoosh += 0.10;
-		if (fs->p == 1)
-			mlx_pixel_put_to_image_multi(fs->multi, x, y, fs->col.tab[fs->col.cy][fs->col.cx]);
-		if (fs->p == 2)
-			mlx_pixel_put_to_image_multisd(fs->multi, x, y, fs->col.tab[fs->col.cy][fs->col.cx]);
-		if (fs->p == 3)
-			mlx_pixel_put_to_image_multitd(fs->multi, x, y, fs->col.tab[fs->col.cy][fs->col.cx]);
+		ft_color_tricorn_multi_sd(fs, x, y);
 		if (fs->col.swoosh > 10)
 		{
 			if (fs->col.cy == 11)
@@ -72,12 +105,5 @@ void 	ft_color_tricorn_multi(t_fs *fs, int x, int y)
 		}
 	}
 	else
-	{
-		if (fs->p == 1)
-			mlx_pixel_put_to_image_multi(fs->multi, x, y, 0x000000);
-		if (fs->p == 2)
-			mlx_pixel_put_to_image_multisd(fs->multi, x, y, 0x000000);
-		if (fs->p == 3)
-			mlx_pixel_put_to_image_multitd(fs->multi, x, y, 0x000000);
-	}
+		ft_color_tricorn_multi_sd(fs, x, y);
 }

@@ -178,30 +178,15 @@ int		roll_hook(int button, int x, int y, t_fs *fs)
 	}
 	if (button == 4)
 	{
-		if (x < (WINSIZE_X / 2) && y < (WINSIZE_Y / 2))
-		{
-			fs->x = (WINSIZE_X / 4);
-			fs->y = (WINSIZE_Y / 4);
-		}
-		if (x > (WINSIZE_X / 2) && y < (WINSIZE_Y / 2))
-		{
-			fs->x = ((WINSIZE_X / 4) * 3);
-			fs->y = (WINSIZE_Y / 4);
-		}
-		if (x < (WINSIZE_X / 2) && y > (WINSIZE_Y / 2))
-		{
-			fs->x = (WINSIZE_X / 4);
-			fs->y = ((WINSIZE_X / 4) * 3);
-		}
-		if (x > (WINSIZE_X / 2) && y > (WINSIZE_Y / 2))
-		{
-			fs->x = ((WINSIZE_X / 4) * 3);
-			fs->y = ((WINSIZE_X / 4) * 3);
-		}
+		fs->sd.zoom += 10;
+		fs->sd.xmin += ((double)x - ((double)x / (double)WINSIZE_X * ((double)WINSIZE_X * 0.0138))) / 10000;
+		fs->sd.ymin += ((double)y - ((double)y / (double)WINSIZE_Y * ((double)WINSIZE_Y * 0.0138))) / 10000;
 	}
 	if (button == 5)
 	{
 		fs->sd.zoom -= 10;
+		fs->sd.xmin -= ((double)x - ((double)x / (double)WINSIZE_X * ((double)WINSIZE_X * 0.0138))) / 10000;
+		fs->sd.ymin -= ((double)y - ((double)y / (double)WINSIZE_Y * ((double)WINSIZE_Y * 0.0138))) / 10000;
 	}
 	mlx_destroy_image(fs->sd.init, fs->sd.img);
 	fs->sd.img = mlx_new_image(fs->sd.init, WINSIZE_X, WINSIZE_Y);

@@ -14,46 +14,45 @@
 
 void	julia_move(t_fs *fs, int x, int y)
 {
-	fs->sd.zr = (((x - (fs->sd.mouse_x - fs->sd.center)) / fs->sd.zoom) + fs->sd.xmin);
-	fs->sd.zi = (((y - (fs->sd.mouse_y - fs->sd.center)) / fs->sd.zoom) + fs->sd.ymin);
+	if (fs->sd.pause != 0)
+	{
+		fs->sd.zr = (((x - (fs->sd.mouse_x - fs->sd.center)) / fs->sd.zoom) \
+		+ fs->sd.xmin);
+		fs->sd.zi = (((y - (fs->sd.mouse_y - fs->sd.center)) / fs->sd.zoom) \
+		+ fs->sd.ymin);
+	}
+	else
+	{
+		fs->sd.zr = ((x / fs->sd.zoom) + fs->sd.xmin);
+		fs->sd.zi = ((y / fs->sd.zoom) + fs->sd.ymin);
+	}
 }
 
-void 	ft_julia(t_fs *fs)
+void	ft_julia(t_fs *fs)
 {
-	int			x;
-	int			y;
 	int			i;
-	double		tmp;
 
-	x = 0;
-	while (x < WINSIZE_X)
+	while (++fs->sd.x < WINSIZE_X)
 	{
-		y = 0;
-		while (y < WINSIZE_Y)
+		fs->sd.y = -1;
+		while (++fs->sd.y < WINSIZE_Y)
 		{
-			if (fs->sd.pause != 0)
-				julia_move(fs, x, y);
-			else
-			{
-				fs->sd.zr = (((x - fs->x) / fs->sd.zoom) + fs->sd.xmin);
-				fs->sd.zi = (((y - fs->y) / fs->sd.zoom) + fs->sd.ymin);
-			}
+			julia_move(fs, fs->sd.x, fs->sd.y);
 			i = 0;
-			while (fs->sd.zr * fs->sd.zr + fs->sd.zi * fs->sd.zi < fs->sd.mere && i < fs->sd.itmax)
+			while (fs->sd.zr * fs->sd.zr + fs->sd.zi * fs->sd.zi < fs->sd.mere \
+				&& i < fs->sd.itmax)
 			{
-				tmp = fs->sd.zr;
-				fs->sd.zr = fs->sd.zr * fs->sd.zr - fs->sd.zi * fs->sd.zi + fs->sd.cr;
-				fs->sd.zi = fs->sd.jf * fs->sd.zi * tmp + fs->sd.ci;
+				fs->sd.tmp = fs->sd.zr;
+				fs->sd.zr = fs->sd.zr * fs->sd.zr - fs->sd.zi * fs->sd.zi + \
+				fs->sd.cr;
+				fs->sd.zi = fs->sd.jf * fs->sd.zi * fs->sd.tmp + fs->sd.ci;
 				i++;
 			}
 			if (i == fs->sd.itmax)
-			{
-				ft_color_tricorn(fs, x, y);
-			}
+				ft_color_tricorn(fs, fs->sd.x, fs->sd.y);
 			else
-				ft_color_ext(fs, x, y, i);
-			y++;
+				ft_color_ext(fs, fs->sd.x, fs->sd.y, i);
 		}
-		x++;
 	}
+	fs->sd.x = -1;
 }

@@ -12,12 +12,13 @@
 
 #include "../include/fractol.h"
 
-void 	ft_color_ext(t_fs *fs, int x, int y, int i)
+void	ft_color_ext(t_fs *fs, int x, int y, int i)
 {
 	if (fs->psy == 1)
 	{
 		fs->col.nike += 1;
-		mlx_pixel_put_to_image(fs->sd, x, y, fs->col.tab[fs->col.cyy][fs->col.cxx]);
+		mlx_pixel_put_to_image(fs->sd, x, y, \
+			fs->col.tab[fs->col.cyy][fs->col.cxx]);
 		if (fs->col.nike > 1000)
 		{
 			if (fs->col.cyy == 0)
@@ -35,13 +36,13 @@ void 	ft_color_ext(t_fs *fs, int x, int y, int i)
 		mlx_pixel_put_to_image(fs->sd, x, y, fs->col.tab[5][i]);
 }
 
-void 	ft_color_tricorn(t_fs *fs, int x, int y)
+void	ft_color_tricorn(t_fs *fs, int x, int y)
 {
 	if (fs->psy == 1)
 	{
 		fs->col.swoosh += 0.10;
-		mlx_pixel_put_to_image(fs->sd, x, y, fs->col.tab[fs->col.cy][fs->col.cx]);
-		// mlx_pixel_put_to_image(fs->sd, x, y, 0x333CC);
+		mlx_pixel_put_to_image(fs->sd, x, y, \
+			fs->col.tab[fs->col.cy][fs->col.cx]);
 		if (fs->col.swoosh > 10)
 		{
 			if (fs->col.cy == 11)
