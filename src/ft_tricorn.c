@@ -12,39 +12,44 @@
 
 #include "../include/fractol.h"
 
+void	ft_tricorn_td(t_fs *fs)
+{
+	fs->sd.tmp = fs->sd.zr;
+	fs->sd.zr = fs->sd.zr * fs->sd.zr - fs->sd.zi * fs->sd.zi + \
+	fs->sd.cr;
+	fs->sd.zi = fs->sd.jf * fs->sd.zi * fs->sd.tmp + fs->sd.ci;
+}
+
+void	ft_tricorn_sd(t_fs *fs, int x, int y)
+{
+	fs->sd.cr = ((x / fs->sd.zoom) + fs->sd.xmin);
+	fs->sd.ci = ((y / fs->sd.zoom) + fs->sd.ymin);
+	fs->sd.zr = 0;
+	fs->sd.zi = 0;
+}
+
 void	ft_tricorn(t_fs *fs)
 {
-	int			x;
-	int			y;
 	int			i;
-	double		tmp;
 
-	x = 0;
-	while (x < WINSIZE_X)
+	while (++fs->sd.x < WINSIZE_X)
 	{
-		y = 0;
-		while (y < WINSIZE_Y)
+		fs->sd.y = -1;
+		while (++fs->sd.y < WINSIZE_Y)
 		{
-			fs->sd.cr = ((x / fs->sd.zoom) + fs->sd.xmin);
-			fs->sd.ci = ((y / fs->sd.zoom) + fs->sd.ymin);
-			fs->sd.zr = 0;
-			fs->sd.zi = 0;
+			ft_tricorn_sd(fs, fs->sd.x, fs->sd.y);
 			i = 0;
-			while (fs->sd.zr * fs->sd.zr + fs->sd.zi * fs->sd.zi < fs->sd.mere && i < fs->sd.itmax)
+			while (fs->sd.zr * fs->sd.zr + fs->sd.zi * fs->sd.zi < fs->sd.mere \
+				&& i < fs->sd.itmax)
 			{
-				tmp = fs->sd.zr;
-				fs->sd.zr = fs->sd.zr * fs->sd.zr - fs->sd.zi * fs->sd.zi + fs->sd.cr;
-				fs->sd.zi = fs->sd.jf * fs->sd.zi * tmp + fs->sd.ci;
+				ft_tricorn_td(fs);
 				i++;
 			}
 			if (i == fs->sd.itmax)
-			{
-				ft_color_tricorn(fs, x, y);
-			}
+				ft_color_tricorn(fs, fs->sd.x, fs->sd.y);
 			else
-				ft_color_ext(fs, x, y, i);
-			y++;
+				ft_color_ext(fs, fs->sd.x, fs->sd.y, i);
 		}
-		x++;
 	}
+	fs->sd.x = -1;
 }

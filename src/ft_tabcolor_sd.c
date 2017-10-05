@@ -12,7 +12,7 @@
 
 #include "../include/fractol.h"
 
-void 	ft_tabcolor_sdssss(t_fs *fs)
+void	ft_tabcolor_sdssss(t_fs *fs)
 {
 	fs->col.tab[9][0] = 0x000066;
 	fs->col.tab[9][1] = 0x003366;
@@ -58,7 +58,7 @@ void	ft_tabcolor_sdsss(t_fs *fs)
 	ft_tabcolor_sdssss(fs);
 }
 
-void 	ft_tabcolor_sdss(t_fs *fs)
+void	ft_tabcolor_sdss(t_fs *fs)
 {
 	fs->col.tab[7][0] = 0x0000CC;
 	fs->col.tab[7][1] = 0x0033CC;

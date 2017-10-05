@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_hook_multi.c                                   :+:      :+:    :+:   */
+/*   key_hook_multi_three.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/18 14:49:53 by prossi            #+#    #+#             */
-/*   Updated: 2017/09/18 14:49:54 by prossi           ###   ########.fr       */
+/*   Created: 2017/10/05 12:50:53 by prossi            #+#    #+#             */
+/*   Updated: 2017/10/05 12:50:55 by prossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
 
-void	key_hook_multi_fh(t_fs *fs)
+void	key_hook_multi_three_fh(t_fs *fs)
 {
 	if (fs->p == 1)
 	{
@@ -36,7 +36,7 @@ void	key_hook_multi_fh(t_fs *fs)
 	}
 }
 
-void	key_hook_multi_td(int keycode, t_fs *fs)
+void	key_hook_multi_three_td(int keycode, t_fs *fs)
 {
 	if (keycode == 123)
 		fs->multi.xmin += 0.10;
@@ -58,7 +58,7 @@ void	key_hook_multi_td(int keycode, t_fs *fs)
 			fs->multi.mere -= 0.05;
 }
 
-void	key_hook_multi_sd(int keycode, t_fs *fs)
+void	key_hook_multi_three_sd(int keycode, t_fs *fs)
 {
 	if (keycode == 0)
 		if (fs->multi.jf < 2)
@@ -86,14 +86,14 @@ void	key_hook_multi_sd(int keycode, t_fs *fs)
 		ft_affich_fs(1);
 }
 
-int		key_hook_multi(int keycode, t_fs *fs)
+int		key_hook_multi_three(int keycode, t_fs *fs)
 {
 	if (keycode >= 0 && keycode <= 53)
-		key_hook_multi_sd(keycode, fs);
+		key_hook_multi_three_sd(keycode, fs);
 	if (keycode >= 67 && keycode <= 126)
-		key_hook_multi_td(keycode, fs);
+		key_hook_multi_three_td(keycode, fs);
 	if (fs->p == 1 || fs->p == 2)
-		key_hook_multi_fh(fs);
+		key_hook_multi_three_fh(fs);
 	if (fs->p == 3)
 	{
 		mlx_destroy_image(fs->multi.inittd, fs->multi.imgtd);

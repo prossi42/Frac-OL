@@ -21,7 +21,8 @@ SRC_NAME = main.c ft_init_struct.c ft_affich.c ft_mandel.c ft_mlx.c \
 			ft_color.c ft_julia.c multiscreen.c ft_mandel_multi.c \
 			ft_color_multi.c ft_tricorn_multi.c ft_julia_multi.c \
 			ft_init_struct_multi.c key_hook_multi.c \
-			mlx_pixel_put_to_image_multi.c
+			mlx_pixel_put_to_image_multi.c key_hook.c mouse_hook.c \
+			roll_hook.c key_hook_multi_two.c key_hook_multi_three.c
 
 # OBJ_PATH = $(SRC_PATH)
 

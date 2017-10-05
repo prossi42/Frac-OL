@@ -25,9 +25,9 @@ typedef struct		s_multi
 	void			*init;
 	void			*initsd;
 	void			*inittd;
-	void 			*wdow;
-	void 			*wdowsd;
-	void 			*wdowtd;
+	void			*wdow;
+	void			*wdowsd;
+	void			*wdowtd;
 	void			*img;
 	void			*imgsd;
 	void			*imgtd;
@@ -109,7 +109,7 @@ typedef struct		s_fs
 
 void				ft_init_struct(t_fs *fs, int option);
 int					ft_mlx(t_fs *fs);
-void 				ft_mandel(t_fs *fs);
+void				ft_mandel(t_fs *fs);
 void				ft_tricorn(t_fs *fs);
 void				mlx_pixel_put_to_image(t_sd sd, int x, int y, \
 	int color);
@@ -123,7 +123,7 @@ void				ft_julia(t_fs *fs);
 void				multiscreen(t_fs *fs, int option);
 void				ft_mandel_multi(t_fs *fs);
 void				ft_tricorn_multi(t_fs *fs);
-void 				ft_julia_multi(t_fs *fs);
+void				ft_julia_multi(t_fs *fs);
 void				ft_color_multi(t_fs *fs);
 void				ft_color_tricorn_multi(t_fs *fs, int x, int y);
 void				ft_color_ext_multi(t_fs *fs, int x, int y, int i);
@@ -133,9 +133,14 @@ int					key_hook_multisd(int keycode, t_fs *fs);
 int					key_hook_multitd(int keycode, t_fs *fs);
 void				mlx_pixel_put_to_image_multi(t_multi multi, int x, int y, \
 	int color);
-void				mlx_pixel_put_to_image_multisd(t_multi multi, int x, int y, \
-	int color);
-void				mlx_pixel_put_to_image_multitd(t_multi multi, int x, int y, \
-	int color);
+void				mlx_pixel_put_to_image_multisd(t_multi multi, int x, \
+	int y, int color);
+void				mlx_pixel_put_to_image_multitd(t_multi multi, int x, \
+	int y, int color);
 void				ft_julia_bis(t_fs *fs);
+int					key_hook(int keycode, t_fs *fs);
+int					mouse_hook(int x, int y, t_fs *fs);
+int					roll_hook(int button, int x, int y, t_fs *fs);
+int					key_hook_multi_two(int keycode, t_fs *fs);
+int					key_hook_multi_three(int keycode, t_fs *fs);
 #endif

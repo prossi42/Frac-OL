@@ -25,7 +25,7 @@ void	ft_tabcolor_tds(t_fs *fs)
 	fs->col.tab[11][8] = 0x999900;
 	fs->col.tab[11][9] = 0x996600;
 	fs->col.tab[11][10] = 0x993300;
-	fs->col.tab[11][11]= 0x990000;
+	fs->col.tab[11][11] = 0x990000;
 	fs->col.tab[11][12] = 0xCC0000;
 	fs->col.tab[11][13] = 0xCC3300;
 	fs->col.tab[11][14] = 0xCC6600;
@@ -34,7 +34,7 @@ void	ft_tabcolor_tds(t_fs *fs)
 	fs->col.tab[11][17] = 0xCCFF00;
 }
 
-void 	ft_tabcolor_td(t_fs *fs)
+void	ft_tabcolor_td(t_fs *fs)
 {
 	fs->col.tab[10][0] = 0x000033;
 	fs->col.tab[10][1] = 0x003333;

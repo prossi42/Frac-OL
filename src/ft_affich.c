@@ -19,4 +19,9 @@ void	ft_affich_fs(int option)
 		ft_putstr("\n Usage : ./exec. + map\n");
 		ft_putstr(" \t--> mandelbrot / tricorn / julia\n");
 	}
+	if (option == 1)
+	{
+		ft_putstr("\n	End Of Program");
+		exit(-1);
+	}
 }

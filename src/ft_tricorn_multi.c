@@ -12,39 +12,45 @@
 
 #include "../include/fractol.h"
 
+void	ft_tricorn_multi_td(t_fs *fs)
+{
+	fs->multi.tmp = fs->multi.zr;
+	fs->multi.zr = fs->multi.zr * fs->multi.zr - fs->multi.zi * \
+	fs->multi.zi + fs->multi.cr;
+	fs->multi.zi = fs->multi.jf * fs->multi.zi * fs->multi.tmp + \
+	fs->multi.ci;
+}
+
+void	ft_tricorn_multi_sd(t_fs *fs, int x, int y)
+{
+	fs->multi.cr = ((x / fs->multi.zoom) + fs->multi.xmin);
+	fs->multi.ci = ((y / fs->multi.zoom) + fs->multi.ymin);
+	fs->multi.zr = 0;
+	fs->multi.zi = 0;
+}
+
 void	ft_tricorn_multi(t_fs *fs)
 {
-	int			x;
-	int			y;
 	int			i;
-	double		tmp;
 
-	x = 0;
-	while (x < WINSIZE_X)
+	while (++fs->multi.x < WINSIZE_X)
 	{
-		y = 0;
-		while (y < WINSIZE_Y)
+		fs->multi.y = -1;
+		while (++fs->multi.y < WINSIZE_Y)
 		{
-			fs->multi.cr = ((x / fs->multi.zoom) + fs->multi.xmin);
-			fs->multi.ci = ((y / fs->multi.zoom) + fs->multi.ymin);
-			fs->multi.zr = 0;
-			fs->multi.zi = 0;
+			ft_tricorn_multi_sd(fs, fs->multi.x, fs->multi.y);
 			i = 0;
-			while (fs->multi.zr * fs->multi.zr + fs->multi.zi * fs->multi.zi < fs->multi.mere && i < fs->multi.itmax)
+			while (fs->multi.zr * fs->multi.zr + fs->multi.zi * fs->multi.zi \
+				< fs->multi.mere && i < fs->multi.itmax)
 			{
-				tmp = fs->multi.zr;
-				fs->multi.zr = fs->multi.zr * fs->multi.zr - fs->multi.zi * fs->multi.zi + fs->multi.cr;
-				fs->multi.zi = fs->multi.jf * fs->multi.zi * tmp + fs->multi.ci;
+				ft_tricorn_multi_td(fs);
 				i++;
 			}
 			if (i == fs->multi.itmax)
-			{
-				ft_color_tricorn_multi(fs, x, y);
-			}
+				ft_color_tricorn_multi(fs, fs->multi.x, fs->multi.y);
 			else
-				ft_color_ext_multi(fs, x, y, i);
-			y++;
+				ft_color_ext_multi(fs, fs->multi.x, fs->multi.y, i);
 		}
-		x++;
 	}
+	fs->multi.x = -1;
 }

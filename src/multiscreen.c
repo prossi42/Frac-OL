@@ -12,7 +12,7 @@
 
 #include "../include/fractol.h"
 
-void 	julia(t_fs *fs)
+void	julia(t_fs *fs)
 {
 	fs->multi.inittd = mlx_init();
 	fs->multi.wdowtd = mlx_new_window(fs->multi.inittd, WINSIZE_X, WINSIZE_Y, \
@@ -23,11 +23,11 @@ void 	julia(t_fs *fs)
 	ft_julia_multi(fs);
 	mlx_put_image_to_window(fs->multi.inittd, fs->multi.wdowtd, \
 		fs->multi.imgtd, 0, 0);
-	mlx_hook(fs->multi.wdowtd, 2, (1L << 0), key_hook_multi, fs);
+	mlx_hook(fs->multi.wdowtd, 2, (1L << 0), key_hook_multi_three, fs);
 	mlx_loop(fs->multi.inittd);
 }
 
-void 	tricorn(t_fs *fs)
+void	tricorn(t_fs *fs)
 {
 	fs->multi.initsd = mlx_init();
 	fs->multi.wdowsd = mlx_new_window(fs->multi.initsd, WINSIZE_X, WINSIZE_Y, \
@@ -38,11 +38,11 @@ void 	tricorn(t_fs *fs)
 	ft_tricorn_multi(fs);
 	mlx_put_image_to_window(fs->multi.initsd, fs->multi.wdowsd, \
 		fs->multi.imgsd, 0, 0);
-	mlx_hook(fs->multi.wdowsd, 2, (1L << 0), key_hook_multi, fs);
+	mlx_hook(fs->multi.wdowsd, 2, (1L << 0), key_hook_multi_two, fs);
 	mlx_loop(fs->multi.initsd);
 }
 
-void 	mandel(t_fs *fs)
+void	mandel(t_fs *fs)
 {
 	fs->multi.init = mlx_init();
 	fs->multi.wdow = mlx_new_window(fs->multi.init, WINSIZE_X, WINSIZE_Y, \
@@ -57,7 +57,7 @@ void 	mandel(t_fs *fs)
 	mlx_loop(fs->multi.init);
 }
 
-void 	multiscreen(t_fs *fs, int option)
+void	multiscreen(t_fs *fs, int option)
 {
 	if (option == 1)
 	{
@@ -77,5 +77,4 @@ void 	multiscreen(t_fs *fs, int option)
 		ft_init_struct_multi(fs, 2);
 		julia(fs);
 	}
-
 }
