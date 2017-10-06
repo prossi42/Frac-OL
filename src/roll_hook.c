@@ -17,18 +17,14 @@ void	roll_hook_td(int button, int x, int y, t_fs *fs)
 	if (button == 4)
 	{
 		fs->sd.zoom += 10;
-		fs->sd.xmin += ((double)x - ((double)x / (double)WINSIZE_X * \
-		((double)WINSIZE_X * 0.1))) / 10000;
-		fs->sd.ymin += ((double)y - ((double)y / (double)WINSIZE_Y * \
-		((double)WINSIZE_Y * 0.1))) / 10000;
+		fs->sd.xmin = fs->sd.xmin + ((double)x - ((double)WINSIZE_X / 2)) / fs->sd.zoom;
+        fs->sd.ymin = fs->sd.ymin + ((double)y - ((double)WINSIZE_Y / 2)) / fs->sd.zoom;
 	}
 	if (button == 5)
 	{
 		fs->sd.zoom -= 10;
-		fs->sd.xmin -= ((double)x - ((double)x / (double)WINSIZE_X * \
-		((double)WINSIZE_X * 0.1))) / 10000;
-		fs->sd.ymin -= ((double)y - ((double)y / (double)WINSIZE_Y * \
-		((double)WINSIZE_Y * 0.1))) / 10000;
+        fs->sd.xmin = fs->sd.xmin + ((double)x - ((double)WINSIZE_X / 2)) / fs->sd.zoom;
+        fs->sd.ymin = fs->sd.ymin + ((double)y - ((double)WINSIZE_Y / 2)) / fs->sd.zoom;
 	}
 }
 

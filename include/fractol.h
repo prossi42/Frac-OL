@@ -95,6 +95,8 @@ typedef struct		s_sd
 	int				x;
 	int				y;
 	double			tmp;
+	double			imx;
+	double			imy;
 }					t_sd;
 
 typedef struct		s_fs
