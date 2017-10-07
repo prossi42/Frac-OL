@@ -111,6 +111,22 @@ int		key_hook_sd(int keycode, t_fs *fs)
 		ft_init_struct(fs, 2);
 		fs->m = 3;
 	}
+	if (keycode == 9)
+	{
+		if (fs->sd.var == 0)
+			fs->sd.var = 1;
+		else
+			fs->sd.var = 0;
+	}
+	if (keycode == 2)
+	{
+		if (fs->sd.pause == 0)
+			fs->sd.pause = 1;
+		else
+			fs->sd.pause = 0;
+	}
+	if (keycode == 17)
+		screen_bindings(fs);
 	return (0);
 }
 

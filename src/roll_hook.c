@@ -12,46 +12,25 @@
 
 #include "../include/fractol.h"
 
-void	roll_hook_td(int button, int x, int y, t_fs *fs)
+void	roll_hook_sd(int button, int x, int y, t_fs *fs)
 {
-	if (button == 4)
+	if (button == 1 || button == 4)
 	{
-		fs->sd.zoom += 10;
-		fs->sd.xmin = fs->sd.xmin + ((double)x - ((double)WINSIZE_X / 2)) / fs->sd.zoom;
+		fs->sd.zoom *= 1.1;
+        fs->sd.xmin = fs->sd.xmin + ((double)x - ((double)WINSIZE_X / 2)) / fs->sd.zoom;
         fs->sd.ymin = fs->sd.ymin + ((double)y - ((double)WINSIZE_Y / 2)) / fs->sd.zoom;
 	}
-	if (button == 5)
+	if (button == 2 || button == 5)
 	{
-		fs->sd.zoom -= 10;
+		fs->sd.zoom *= 0.9;
         fs->sd.xmin = fs->sd.xmin + ((double)x - ((double)WINSIZE_X / 2)) / fs->sd.zoom;
         fs->sd.ymin = fs->sd.ymin + ((double)y - ((double)WINSIZE_Y / 2)) / fs->sd.zoom;
 	}
 }
 
-void	roll_hook_sd(int button, t_fs *fs)
-{
-	if (button == 1)
-	{
-		if (fs->sd.pause == 0)
-			fs->sd.pause = 1;
-		else
-			fs->sd.pause = 0;
-	}
-	if (button == 2)
-	{
-		if (fs->sd.var == 0)
-			fs->sd.var = 1;
-		else
-			fs->sd.var = 0;
-	}
-}
-
 int		roll_hook(int button, int x, int y, t_fs *fs)
 {
-	if (button == 1 || button == 2)
-		roll_hook_sd(button, fs);
-	if (button == 4 || button == 5)
-		roll_hook_td(button, x, y, fs);
+	roll_hook_sd(button, x, y, fs);
 	mlx_destroy_image(fs->sd.init, fs->sd.img);
 	fs->sd.img = mlx_new_image(fs->sd.init, WINSIZE_X, WINSIZE_Y);
 	fs->sd.map = mlx_get_data_addr(fs->sd.img, &fs->sd.bpp, \

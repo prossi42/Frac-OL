@@ -20,6 +20,12 @@
 # define WINSIZE_X 600
 # define WINSIZE_Y 600
 
+typedef struct		s_bind
+{
+	void			*init;
+	void			*wdow;
+}					t_bind;
+
 typedef struct		s_multi
 {
 	void			*init;
@@ -104,6 +110,7 @@ typedef struct		s_fs
 	t_sd			sd;
 	t_col			col;
 	t_multi			multi;
+	t_bind			bind;
 	int				m;
 	int				p;
 	int				psy;
@@ -145,4 +152,5 @@ int					mouse_hook(int x, int y, t_fs *fs);
 int					roll_hook(int button, int x, int y, t_fs *fs);
 int					key_hook_multi_two(int keycode, t_fs *fs);
 int					key_hook_multi_three(int keycode, t_fs *fs);
+void				screen_bindings(t_fs *fs);
 #endif
