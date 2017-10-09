@@ -14,17 +14,24 @@
 
 void	roll_hook_sd(int button, int x, int y, t_fs *fs)
 {
-	if (button == 1 || button == 4)
+	if (x > 0 && x < WINSIZE_X && y > 0 && y < WINSIZE_Y)
 	{
-		fs->sd.zoom *= 1.1;
-        fs->sd.xmin = fs->sd.xmin + ((double)x - ((double)WINSIZE_X / 2)) / fs->sd.zoom;
-        fs->sd.ymin = fs->sd.ymin + ((double)y - ((double)WINSIZE_Y / 2)) / fs->sd.zoom;
-	}
-	if (button == 2 || button == 5)
-	{
-		fs->sd.zoom *= 0.9;
-        fs->sd.xmin = fs->sd.xmin + ((double)x - ((double)WINSIZE_X / 2)) / fs->sd.zoom;
-        fs->sd.ymin = fs->sd.ymin + ((double)y - ((double)WINSIZE_Y / 2)) / fs->sd.zoom;
+		if (button == 1 || button == 4)
+		{
+			fs->sd.zoom *= 1.1;
+			fs->sd.xmin = fs->sd.xmin + ((double)x - ((double)WINSIZE_X / 2)) \
+			/ fs->sd.zoom;
+			fs->sd.ymin = fs->sd.ymin + ((double)y - ((double)WINSIZE_Y / 2)) \
+			/ fs->sd.zoom;
+		}
+		if (button == 2 || button == 5)
+		{
+			fs->sd.zoom *= 0.9;
+			fs->sd.xmin = fs->sd.xmin + ((double)x - ((double)WINSIZE_X / 2)) \
+			/ fs->sd.zoom;
+			fs->sd.ymin = fs->sd.ymin + ((double)y - ((double)WINSIZE_Y / 2)) \
+			/ fs->sd.zoom;
+		}
 	}
 }
 

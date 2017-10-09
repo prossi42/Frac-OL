@@ -15,24 +15,26 @@
 int		key_hook_fih(int keycode, t_fs *fs)
 {
 	if (keycode == 123)
-	{
 		fs->sd.xmin += 0.10;
-		fs->sd.xmax += 0.10;
-	}
 	if (keycode == 124)
-	{
 		fs->sd.xmin -= 0.10;
-		fs->sd.xmax -= 0.10;
-	}
 	if (keycode == 125)
-	{
 		fs->sd.ymin -= 0.10;
-		fs->sd.ymax -= 0.10;
-	}
 	if (keycode == 126)
-	{
 		fs->sd.ymin += 0.10;
-		fs->sd.ymax += 0.10;
+	if (keycode == 9)
+	{
+		if (fs->sd.var == 0)
+			fs->sd.var = 1;
+		else
+			fs->sd.var = 0;
+	}
+	if (keycode == 2)
+	{
+		if (fs->sd.pause == 0)
+			fs->sd.pause = 1;
+		else
+			fs->sd.pause = 0;
 	}
 	return (0);
 }
@@ -44,10 +46,6 @@ int		key_hook_fh(int keycode, t_fs *fs)
 		ft_putstr("\n	End Of Program");
 		exit(-1);
 	}
-	if (keycode == 69)
-		fs->sd.zoom += 10;
-	if (keycode == 78)
-		fs->sd.zoom -= 10;
 	if (keycode == 67)
 		if (fs->sd.mere < 4)
 			fs->sd.mere += 0.05;
@@ -111,20 +109,6 @@ int		key_hook_sd(int keycode, t_fs *fs)
 		ft_init_struct(fs, 2);
 		fs->m = 3;
 	}
-	if (keycode == 9)
-	{
-		if (fs->sd.var == 0)
-			fs->sd.var = 1;
-		else
-			fs->sd.var = 0;
-	}
-	if (keycode == 2)
-	{
-		if (fs->sd.pause == 0)
-			fs->sd.pause = 1;
-		else
-			fs->sd.pause = 0;
-	}
 	if (keycode == 17)
 		screen_bindings(fs);
 	return (0);
@@ -138,7 +122,7 @@ int		key_hook(int keycode, t_fs *fs)
 		key_hook_td(keycode, fs);
 	if (keycode > 40 && keycode <= 100)
 		key_hook_fh(keycode, fs);
-	if (keycode > 100 && keycode <= 200)
+	if ((keycode > 100 && keycode <= 200) || keycode == 9 || keycode == 2)
 		key_hook_fih(keycode, fs);
 	mlx_destroy_image(fs->sd.init, fs->sd.img);
 	fs->sd.img = mlx_new_image(fs->sd.init, WINSIZE_X, WINSIZE_Y);

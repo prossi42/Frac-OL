@@ -51,6 +51,7 @@ int		ft_mlx(t_fs *fs)
 		ft_julia(fs);
 	mlx_put_image_to_window(fs->sd.init, fs->sd.wdow, \
 		fs->sd.img, 0, 0);
+	mlx_string_put(fs->sd.init, fs->sd.wdow, 280, 75, 0x000000, "Press T");
 	mlx_hook(fs->sd.wdow, 2, (1L << 0), key_hook, fs);
 	mlx_hook(fs->sd.wdow, 6, (1L << 6), mouse_hook, fs);
 	mlx_hook(fs->sd.wdow, 4, (1L << 2), roll_hook, fs);
